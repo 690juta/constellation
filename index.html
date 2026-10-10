@@ -105,8 +105,44 @@
   }
   .chip:hover { border-color: var(--gold); }
 
+  header { transition: opacity 1.2s ease 0.4s; }
+  body.has-cover header { opacity: 0; }
+
+  #cover {
+    position: fixed; inset: 0; z-index: 6;
+    display: flex; align-items: center; justify-content: center;
+    padding: calc(env(safe-area-inset-top, 0px) + 4.5rem) 1.5rem calc(env(safe-area-inset-bottom, 0px) + 2.5rem);
+    overflow-y: auto; text-align: center;
+    transition: opacity 0.9s ease, visibility 0s linear 0.9s;
+  }
+  #cover.gone { opacity: 0; visibility: hidden; pointer-events: none; }
+  #cover .inner { max-width: 34rem; margin: auto; animation: coverIn 1.4s ease both; }
+  @keyframes coverIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { #cover .inner { animation: none; } }
+  #cover .kicker {
+    margin: 0 0 1rem; font-size: 0.8rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  #cover h2 {
+    margin: 0 0 1.6rem; font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: clamp(2.1rem, 8vw, 3.2rem); line-height: 1.12; letter-spacing: -0.01em;
+  }
+  #cover p.body {
+    margin: 0 0 1rem; font-family: var(--serif); font-size: 1.2rem; line-height: 1.65;
+    color: rgba(245, 238, 220, 0.88);
+  }
+  #cover .next {
+    margin-top: 1.6rem; min-height: 48px; padding: 0 1.8rem;
+    border: 1px solid var(--gold); border-radius: 999px;
+    background: transparent; color: var(--ink);
+    font: 500 0.95rem var(--sans); letter-spacing: 0.04em; cursor: pointer;
+    transition: background 0.2s;
+  }
+  #cover .next:hover { background: rgba(244, 220, 158, 0.12); }
+  #cover .next:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
   #music {
-    position: fixed; z-index: 4;
+    position: fixed; z-index: 8;
     top: calc(env(safe-area-inset-top, 0px) + 1.1rem); right: 1.1rem;
     display: inline-flex; align-items: center; gap: 0.5rem;
     min-height: 44px; padding: 0 1rem 0 0.85rem;
@@ -181,6 +217,35 @@
     document.getElementById("empty").style.display = "grid";
     countEl.textContent = "";
     return;
+  }
+
+  /* ---------- optional cover page (from "intro" in memories.js) ---------- */
+  var began = true, t0 = null;
+  if (data.intro) {
+    began = false;
+    var intro = data.intro;
+    var cover = document.createElement("section");
+    cover.id = "cover"; cover.setAttribute("aria-label", "Introduction");
+    var inner = document.createElement("div"); inner.className = "inner";
+    var addEl = function (tag, cls, text) {
+      var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = text; inner.appendChild(e); return e;
+    };
+    if (intro.kicker) addEl("p", "kicker", intro.kicker);
+    addEl("h2", "", intro.heading || data.title || "");
+    (intro.paragraphs || []).forEach(function (t) { addEl("p", "body", t); });
+    var next = addEl("button", "next", intro.button || "Next");
+    next.type = "button";
+    cover.appendChild(inner); document.body.appendChild(cover);
+    document.body.classList.add("has-cover");
+    world.setAttribute("inert", "");
+    next.addEventListener("click", function () {
+      cover.classList.add("gone");
+      document.body.classList.remove("has-cover");
+      world.removeAttribute("inert");
+      began = true; t0 = null;
+      setTimeout(function () { if (cover.parentNode) cover.parentNode.removeChild(cover); }, 1200);
+    });
+    next.focus();
   }
 
   /* ---------- helpers ---------- */
@@ -291,8 +356,9 @@
   }
 
   /* ---------- drawing ---------- */
-  var t0 = null, step;
+  var step;
   function reveal(it, el) {
+    if (!began) return 0;
     if (reduce) return 1;
     var v = (el - 500 - it.idx * step) / 700;
     return v < 0 ? 0 : v > 1 ? 1 : v;
@@ -300,8 +366,8 @@
   function rgba(c, a) { return "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + a + ")"; }
 
   function frame(t) {
-    if (t0 === null) t0 = t;
-    var el = t - t0;
+    var el = -1e9;
+    if (began) { if (t0 === null) t0 = t; el = t - t0; }
     step = Math.min(260, 2400 / items.length);
 
     pan.x += (target.x - pan.x) * 0.15; pan.y += (target.y - pan.y) * 0.15;
