@@ -102,6 +102,71 @@ window.MEMORIES = {
       date: "2026-10-08",
       from: "drinks",
       links: ["tea-orders"]
+    },
+    {
+      id: "fish",
+      label: "She really loves fish",
+      text: "She really loves fish, haha.",
+      date: "2026-10-09",
+      from: "animals"
+    },
+    {
+      id: "be-a-fish",
+      label: "She wanted to be a fish",
+      text: "She once said she wanted to be a fish.",
+      date: "2026-10-09",
+      from: "fish"
+    },
+    {
+      id: "thrillers",
+      label: "Thrillers and survival films",
+      text: "She likes thriller and survival movies.",
+      date: "2026-10-09"
+    },
+    {
+      id: "kdrama",
+      label: "Korean dramas",
+      text: "She also enjoys watching Korean dramas.",
+      date: "2026-10-09",
+      from: "thrillers"
+    },
+    {
+      id: "disney",
+      label: "Her Disney favorites",
+      text: "The Disney movies she likes are Coco, Aladdin, and Tangled.",
+      date: "2026-10-09",
+      from: "thrillers"
+    },
+    {
+      id: "music",
+      label: "Complex instrumentation",
+      text: "She likes music with complex instrumentation.",
+      date: "2026-10-09"
+    },
+    {
+      id: "bag-charms",
+      label: "Bag charm collector",
+      text: "She likes collecting bag charms.",
+      date: "2026-10-10"
+    },
+    {
+      id: "colors",
+      label: "Pink and green",
+      text: "She likes pink and green.",
+      date: "2026-10-10"
+    },
+    {
+      id: "fruit",
+      label: "Mango and banana",
+      text: "The fruits she likes are mango and banana.",
+      date: "2026-10-10",
+      from: "food"
+    },
+    {
+      id: "dark-sleep",
+      label: "Sleeping in the dark",
+      text: "She likes to sleep in the dark.",
+      date: "2026-10-10"
     }
   ]
 };
