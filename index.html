@@ -110,35 +110,42 @@
 
   #cover {
     position: fixed; inset: 0; z-index: 6;
-    display: flex; align-items: center; justify-content: center;
-    padding: calc(env(safe-area-inset-top, 0px) + 4.5rem) 1.5rem calc(env(safe-area-inset-bottom, 0px) + 2.5rem);
-    overflow-y: auto; text-align: center;
     transition: opacity 0.9s ease, visibility 0s linear 0.9s;
   }
   #cover.gone { opacity: 0; visibility: hidden; pointer-events: none; }
-  #cover .inner { max-width: 34rem; margin: auto; animation: coverIn 1.4s ease both; }
-  @keyframes coverIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  #cover .scroll {
+    position: absolute; inset: 0; overflow-y: auto; text-align: center;
+    padding: 58vh 1.5rem 55vh;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 14%, #000 74%, transparent 90%);
+            mask-image: linear-gradient(to bottom, transparent 0, #000 14%, #000 74%, transparent 90%);
+    scrollbar-width: none; overscroll-behavior: contain;
+  }
+  #cover .scroll::-webkit-scrollbar { display: none; }
+  #cover .inner { max-width: 34rem; margin: 0 auto; animation: coverIn 1.6s ease both; }
+  @keyframes coverIn { from { opacity: 0; } to { opacity: 1; } }
   @media (prefers-reduced-motion: reduce) { #cover .inner { animation: none; } }
   #cover .kicker {
     margin: 0 0 1rem; font-size: 0.8rem; letter-spacing: 0.18em;
     text-transform: uppercase; color: var(--gold);
   }
   #cover h2 {
-    margin: 0 0 1.6rem; font-family: var(--serif); font-style: italic; font-weight: 400;
+    margin: 0 0 2.2rem; font-family: var(--serif); font-style: italic; font-weight: 400;
     font-size: clamp(2.1rem, 8vw, 3.2rem); line-height: 1.12; letter-spacing: -0.01em;
   }
   #cover p.body {
-    margin: 0 0 1rem; font-family: var(--serif); font-size: 1.2rem; line-height: 1.65;
-    color: rgba(245, 238, 220, 0.88);
+    margin: 0 0 1.9rem; font-family: var(--serif); font-size: 1.25rem; line-height: 1.7;
+    color: rgba(245, 238, 220, 0.9);
   }
   #cover .next {
-    margin-top: 1.6rem; min-height: 48px; padding: 0 1.8rem;
+    position: absolute; left: 50%; transform: translateX(-50%);
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 1.6rem);
+    min-height: 48px; padding: 0 1.8rem;
     border: 1px solid var(--gold); border-radius: 999px;
-    background: transparent; color: var(--ink);
+    background: rgba(13, 17, 40, 0.75); color: var(--ink);
     font: 500 0.95rem var(--sans); letter-spacing: 0.04em; cursor: pointer;
     transition: background 0.2s;
   }
-  #cover .next:hover { background: rgba(244, 220, 158, 0.12); }
+  #cover .next:hover { background: rgba(244, 220, 158, 0.16); }
   #cover .next:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
   #music {
@@ -226,6 +233,7 @@
     var intro = data.intro;
     var cover = document.createElement("section");
     cover.id = "cover"; cover.setAttribute("aria-label", "Introduction");
+    var scroller = document.createElement("div"); scroller.className = "scroll";
     var inner = document.createElement("div"); inner.className = "inner";
     var addEl = function (tag, cls, text) {
       var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = text; inner.appendChild(e); return e;
@@ -233,12 +241,39 @@
     if (intro.kicker) addEl("p", "kicker", intro.kicker);
     addEl("h2", "", intro.heading || data.title || "");
     (intro.paragraphs || []).forEach(function (t) { addEl("p", "body", t); });
-    var next = addEl("button", "next", intro.button || "Next");
-    next.type = "button";
-    cover.appendChild(inner); document.body.appendChild(cover);
+    scroller.appendChild(inner); cover.appendChild(scroller);
+
+    var next = document.createElement("button");
+    next.type = "button"; next.className = "next"; next.textContent = intro.button || "Next";
+    cover.appendChild(next);
+    document.body.appendChild(cover);
     document.body.classList.add("has-cover");
     world.setAttribute("inert", "");
+
+    // slow upward scroll, like end credits; any touch / wheel / key hands control back to her
+    var auto = !reduce && intro.autoscroll !== false, last = null, pos = 0, speed = intro.speed || 30;
+    ["wheel", "touchstart", "pointerdown", "keydown"].forEach(function (ev) {
+      scroller.addEventListener(ev, function () { auto = false; }, { passive: true });
+    });
+    var tick = function (ts) {
+      if (!auto) return;
+      if (last === null) last = ts;
+      var dt = Math.min((ts - last) / 1000, 0.1); last = ts;
+      pos += dt * speed; scroller.scrollTop = pos;
+      if (pos >= scroller.scrollHeight - scroller.clientHeight) { auto = false; return; }
+      requestAnimationFrame(tick);
+    };
+    setTimeout(function () {
+      if (!auto) return;
+      if (intro.duration) {
+        var range = scroller.scrollHeight - scroller.clientHeight;
+        speed = Math.max(22, Math.min(45, range / intro.duration));
+      }
+      requestAnimationFrame(tick);
+    }, 1800);
+
     next.addEventListener("click", function () {
+      auto = false;
       cover.classList.add("gone");
       document.body.classList.remove("has-cover");
       world.removeAttribute("inert");
