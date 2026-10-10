@@ -14,11 +14,15 @@
     links  (optional) ids of other memories it also connects to,
            drawn as a faint dashed line. e.g. links: ["animals"]
 
+  The small line under the title is the "subtitle" below. {n} is replaced
+  by the number of stars, so you can reword it however you like.
+
   Stars noticed within the last 7 days gently pulse, so she can
   spot what's new. Keep the order of the list = the order you noticed things.
 */
 window.MEMORIES = {
   title: "A Constellation of You",
+  subtitle: "{n} stars, and counting",
   items: [
     {
       id: "animals",
