@@ -167,6 +167,72 @@ window.MEMORIES = {
       label: "Sleeping in the dark",
       text: "She likes to sleep in the dark.",
       date: "2026-10-10"
+    },
+    {
+      id: "unhurried",
+      label: "Comfortable and unhurried",
+      text: "She likes an environment that is comfortable and unhurried.",
+      date: "2026-10-10"
+    },
+    {
+      id: "italy",
+      label: "Her dream country: Italy",
+      text: "That's why her dream country is Italy.",
+      date: "2026-10-10",
+      from: "unhurried"
+    },
+    {
+      id: "beach",
+      label: "She likes the beach",
+      text: "She likes the beach.",
+      date: "2026-10-10",
+      from: "unhurried"
+    },
+    {
+      id: "listening",
+      label: "She likes listening",
+      text: "She likes listening.",
+      date: "2026-10-10"
+    },
+    {
+      id: "advice",
+      label: "Being asked for advice",
+      text: "I think she would also appreciate being asked for advice.",
+      date: "2026-10-10",
+      from: "listening"
+    },
+    {
+      id: "love-languages",
+      label: "Her love languages",
+      text: "Her love languages are quality time and receiving gifts.",
+      date: "2026-10-10"
+    },
+    {
+      id: "childhood",
+      label: "When she was little",
+      text: "Little her has a corner of the sky too.",
+      date: "2026-10-10"
+    },
+    {
+      id: "bumper-cars",
+      label: "Bumper cars",
+      text: "When she was little, she loved going to a certain shopping spot to ride the bumper cars, haha.",
+      date: "2026-10-10",
+      from: "childhood"
+    },
+    {
+      id: "teh-botol",
+      label: "Teh Botol on the road",
+      text: "When she was little and got tired riding the motorcycle with her mom and dad, she would often be given a Teh Botol along the way.",
+      date: "2026-10-10",
+      from: "childhood"
+    },
+    {
+      id: "monkey-doll",
+      label: "Her monkey doll",
+      text: "She has had a beloved monkey doll for a long time.",
+      date: "2026-10-10",
+      links: ["childhood"]
     }
   ]
 };
