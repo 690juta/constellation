@@ -14,7 +14,8 @@
     links  (optional) ids of other memories it also connects to,
            drawn as a faint dashed line. e.g. links: ["animals"]
 
-  The "intro" block is the cover page she sees first. Reword it freely; delete
+  The "intro" block is the cover page she sees first. "duration" is roughly how
+  many seconds the credits take to scroll; "speed" is used if you remove it. Reword it freely; delete
   the whole block if you ever want the sky to open straight away.
 
   The small line under the title is the "subtitle" below. {n} is replaced
@@ -31,10 +32,23 @@ window.MEMORIES = {
     heading: "A Constellation of You",
     paragraphs: [
       "Everything in this sky is something I remember about you. Some of it is big, a lot of it is small, and all of it stayed with me.",
+      "Along the way you'll find the things you love: the foods and drinks you always come back to, the animals you adore, the shows and music you keep close.",
+      "You'll find little pieces of how you look and sound to me: your smile, your laugh, your voice, the way you smell, the calm you carry.",
+      "You'll find the people who matter to you, and a few memories from when you were little.",
+      "And you'll find the hard days too. I remember them, and I remember that you kept walking.",
+      "People have been drawing constellations for thousands of years. Today there are 88 official ones, but the lines between the stars are imaginary. We simply agreed to see a shape.",
+      "The stars in a real constellation usually have nothing to do with each other. They only look close because of where we stand on Earth. Mine are different. Every line in this sky is a real connection.",
+      "The brightest star in the night sky, Sirius, is about 8.6 light-years away, so the light you see from it tonight left more than eight years ago. Looking at a star is always looking a little into the past, a bit like remembering.",
+      "Stars aren't all white. The hottest glow blue-white, and the cooler ones look orange or red. That's why each family of memories here has a color of its own.",
+      "In Java, people have long read the sky to know when to plant, and the three stars of Orion's Belt were known as the plow. People have always looked up to find their way.",
+      "The carbon in your body, the oxygen you breathe, and the iron in your blood were all made inside stars. So in a quiet way, you really are made of stars.",
+      "Even constellations change. The stars slowly drift, and over tens of thousands of years the shapes we know will stretch into new ones. I think that's why this sky is allowed to keep changing too.",
       "Each star is one memory. Tap a star to read it. A line shows where one memory grew out of another, and each color is a little family of stars that belong together.",
       "It isn't finished. Whenever I notice something new, a new star will appear, and for a week it will glow so you can find it.",
       "Take your time. If you'd like a song to wander with, tap Music in the corner."
     ],
+    duration: 55,
+    speed: 30,
     button: "Next"
   },
   items: [
