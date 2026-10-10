@@ -295,6 +295,129 @@ window.MEMORIES = {
       date: "2026-10-10",
       from: "hurt",
       links: ["kept-walking"]
+    },
+    {
+      id: "saltbread",
+      label: "Salt bread too",
+      text: "She also likes salt bread.",
+      date: "2026-10-10",
+      from: "food",
+      links: ["croissant"]
+    },
+    {
+      id: "trying-new",
+      label: "Trying new things",
+      text: "She likes trying new things.",
+      date: "2026-10-10"
+    },
+    {
+      id: "orchestra",
+      label: "An orchestra someday",
+      text: "She wants to go to the orchestra.",
+      date: "2026-10-10",
+      from: "music"
+    },
+    {
+      id: "looks",
+      label: "How she looks to me",
+      text: "Little details of her that I notice.",
+      date: "2026-10-10"
+    },
+    {
+      id: "hijab",
+      label: "Her hijab",
+      text: "She wears a hijab, and it looks absolutely beautiful.",
+      date: "2026-10-10",
+      from: "looks"
+    },
+    {
+      id: "long-hair",
+      label: "Her long hair",
+      text: "She has long hair.",
+      date: "2026-10-10",
+      from: "looks"
+    },
+    {
+      id: "eyes",
+      label: "Her eyes",
+      text: "Her eyes are black and slightly brown.",
+      date: "2026-10-10",
+      from: "looks"
+    },
+    {
+      id: "smile",
+      label: "Her smile",
+      text: "The shape of her smile is incredibly cute.",
+      date: "2026-10-10",
+      from: "looks"
+    },
+    {
+      id: "cheeks",
+      label: "Her cheeks",
+      text: "She has slightly chubby cheeks, hahaha.",
+      date: "2026-10-10",
+      from: "looks"
+    },
+    {
+      id: "lips",
+      label: "Her lips",
+      text: "She has slightly full lips.",
+      date: "2026-10-10",
+      from: "looks"
+    },
+    {
+      id: "nose",
+      label: "Her nose",
+      text: "She has a sharp, high-bridged nose.",
+      date: "2026-10-10",
+      from: "looks"
+    },
+    {
+      id: "height",
+      label: "How tall she is",
+      text: "She's 157 cm tall.",
+      date: "2026-10-10",
+      from: "looks"
+    },
+    {
+      id: "fingers",
+      label: "Her fingers",
+      text: "Her fingers are slender and graceful.",
+      date: "2026-10-10",
+      from: "looks"
+    },
+    {
+      id: "toes",
+      label: "Her toes",
+      text: "The shape of her toes is also beautiful and perfect.",
+      date: "2026-10-10",
+      from: "fingers"
+    },
+    {
+      id: "shoe-size",
+      label: "Her shoe size",
+      text: "Her shoe size is 40.",
+      date: "2026-10-10",
+      from: "toes"
+    },
+    {
+      id: "voice",
+      label: "Her voice",
+      text: "Her voice!!! She has a soft, deep voice. It has become one of my favorites, haha.",
+      date: "2026-10-10"
+    },
+    {
+      id: "sing",
+      label: "She can sing",
+      text: "Because of her good voice, she can sing.",
+      date: "2026-10-10",
+      from: "voice"
+    },
+    {
+      id: "smart",
+      label: "What's in her head",
+      text: "And what's in her head! She's smart. She knows so many things.",
+      date: "2026-10-10"
     }
   ]
 };
