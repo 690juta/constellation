@@ -475,14 +475,17 @@
     btn.setAttribute("aria-pressed", on ? "true" : "false");
     btn.setAttribute("aria-label", on ? "Pause music" : "Play music");
   }
-  function hide() { btn.hidden = true; btn.style.display = "none"; }
 
-  audio.addEventListener("error", hide);
   btn.addEventListener("click", function () {
     if (audio.paused) {
       var p = audio.play();
       setOn(true); fade(LEVEL);
-      if (p && p.catch) p.catch(function () { setOn(false); if (audio.error) hide(); });
+      if (p && p.catch) p.catch(function () {
+        clearInterval(timer); setOn(false);
+        var label = btn.querySelector("span"), prev = label.textContent;
+        label.textContent = audio.error ? "Song not found" : "Tap again";
+        setTimeout(function () { label.textContent = prev; }, 2500);
+      });
     } else {
       setOn(false); fade(0, function () { audio.pause(); });
     }
