@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0f24">
+<title>Things I've noticed about you</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&family=Figtree:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky-top: #0a0e22;
+    --sky-bottom: #1b1842;
+    --ink: #f5eedc;
+    --dim: #a3a8cc;
+    --gold: #f4dc9e;
+    --panel: rgba(18, 22, 52, 0.88);
+    --serif: "Newsreader", Georgia, "Times New Roman", serif;
+    --sans: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; overflow: hidden; }
+  body {
+    background:
+      radial-gradient(120% 70% at 50% 115%, rgba(140, 90, 150, 0.28), transparent 60%),
+      linear-gradient(180deg, var(--sky-top), var(--sky-bottom));
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+  #bg { pointer-events: none; }
+
+  #world { position: fixed; inset: 0; touch-action: none; cursor: grab; }
+  #world.drag { cursor: grabbing; }
+  #fg { pointer-events: none; }
+
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 2;
+    padding: calc(env(safe-area-inset-top, 0px) + 1.4rem) 1.5rem 0;
+    pointer-events: none;
+  }
+  h1 {
+    margin: 0;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.6rem, 5.5vw, 2.4rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .count { margin: 0.45rem 0 0; font-size: 0.9rem; color: var(--dim); }
+
+  .star {
+    position: absolute; left: 0; top: 0;
+    width: 44px; height: 44px; margin: -22px 0 0 -22px;
+    padding: 0; border: 0; border-radius: 50%;
+    background: transparent; cursor: pointer;
+  }
+  .star:focus-visible { outline: 2px solid var(--gold); outline-offset: -8px; }
+  .star::after {
+    content: attr(data-label);
+    position: absolute; left: 50%; bottom: 100%;
+    transform: translate(-50%, 4px);
+    padding: 0.25rem 0.6rem; border-radius: 6px;
+    background: var(--panel); color: var(--ink);
+    font: 400 0.8rem/1.3 var(--sans); white-space: nowrap;
+    opacity: 0; pointer-events: none; transition: opacity 0.2s;
+  }
+  .star:hover::after, .star:focus-visible::after, .star.sel::after { opacity: 1; }
+
+  #card {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 3;
+    margin: 0 auto; max-width: 520px;
+    padding: 1.4rem 1.5rem calc(env(safe-area-inset-bottom, 0px) + 1.2rem);
+    background: var(--panel);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-radius: 18px 18px 0 0;
+    border-top: 1px solid rgba(244, 220, 158, 0.18);
+    transform: translateY(105%); visibility: hidden;
+    transition: transform 0.35s ease, visibility 0s linear 0.35s;
+  }
+  #card.open { transform: none; visibility: visible; transition: transform 0.35s ease; }
+  #card .date { margin: 0 0 0.6rem; font-size: 0.85rem; color: var(--dim); }
+  #card .text {
+    margin: 0; font-family: var(--serif); font-size: 1.3rem; line-height: 1.5;
+    max-width: 44ch;
+  }
+  #card .close {
+    position: absolute; top: 0.6rem; right: 0.7rem;
+    width: 44px; height: 44px; border: 0; border-radius: 50%;
+    background: transparent; color: var(--dim);
+    font-size: 1.6rem; line-height: 1; cursor: pointer;
+  }
+  #card .close:hover { color: var(--ink); }
+  #card .close:focus-visible, .chip:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .rel { margin-top: 1rem; font-size: 0.85rem; color: var(--dim); }
+  .rel span { margin-right: 0.4rem; }
+  .chip {
+    display: inline-block; margin: 0.25rem 0.4rem 0 0; padding: 0.3rem 0.75rem;
+    border: 1px solid rgba(245, 238, 220, 0.25); border-radius: 999px;
+    background: transparent; color: var(--ink);
+    font: 400 0.85rem var(--sans); cursor: pointer;
+  }
+  .chip:hover { border-color: var(--gold); }
+
+  #empty {
+    position: fixed; inset: 0; display: none; place-items: center; text-align: center;
+    padding: 2rem; color: var(--dim); font-family: var(--serif); font-size: 1.2rem;
+  }
+</style>
+</head>
+<body>
+  <canvas id="bg" aria-hidden="true"></canvas>
+
+  <header>
+    <h1 id="title">Things I've noticed about you</h1>
+    <p class="count" id="count"></p>
+  </header>
+
+  <main id="world" aria-label="Constellation of memories">
+    <canvas id="fg" aria-hidden="true"></canvas>
+  </main>
+
+  <p id="empty">No stars yet. Add your first memory in memories.js.</p>
+
+  <section id="card" aria-live="polite" aria-label="Memory">
+    <button class="close" id="close" aria-label="Close">&times;</button>
+    <p class="date" id="cardDate"></p>
+    <p class="text" id="cardText"></p>
+    <div id="cardRel"></div>
+  </section>
+
+<script src="memories.js"></script>
+<script>
+(function () {
+  var data = window.MEMORIES || { items: [] };
+  var items = (data.items || []).slice();
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var PALETTE = ["#f4dc9e", "#f2b8c6", "#a9c9f2", "#b6e2cf", "#cdbaf2"];
+
+  var titleEl = document.getElementById("title");
+  if (data.title) { titleEl.textContent = data.title; document.title = data.title; }
+  var countEl = document.getElementById("count");
+  var world = document.getElementById("world");
+  var fg = document.getElementById("fg"), fctx = fg.getContext("2d");
+  var bg = document.getElementById("bg"), bctx = bg.getContext("2d");
+  var card = document.getElementById("card");
+
+  if (!items.length) {
+    document.getElementById("empty").style.display = "grid";
+    countEl.textContent = "";
+    return;
+  }
+
+  /* ---------- helpers ---------- */
+  function hash(s) { var h = 2166136261; for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+  function rng(seed) {
+    return function () {
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function rgb(hex) { var n = parseInt(hex.slice(1), 16); return [n >> 16 & 255, n >> 8 & 255, n & 255]; }
+  function parseDate(s) { var p = String(s || "").split("-"); return p.length === 3 ? new Date(+p[0], +p[1] - 1, +p[2]) : null; }
+  function fmtDate(d) { return d ? d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" }) : ""; }
+  function shortLabel(it) { return it.label || (it.text.length > 30 ? it.text.slice(0, 28) + "…" : it.text); }
+
+  /* ---------- layout in "world" units (stable: depends only on list order + ids) ---------- */
+  var byId = {};
+  items.forEach(function (it, i) { it.idx = i; it.kids = 0; byId[it.id] = it; });
+
+  var placed = [], roots = 0;
+  items.forEach(function (it) {
+    var r = rng(hash(it.id));
+    var parent = it.from && byId[it.from] && byId[it.from].pos ? byId[it.from] : null;
+    var pos = null;
+    if (parent) {
+      it.parent = parent; parent.kids++;
+      it.color = parent.color;
+      for (var k = 0; k < 60; k++) {
+        var a = r() * Math.PI * 2, d = 0.17 + r() * 0.12 + k * 0.004;
+        var p = { x: parent.pos.x + Math.cos(a) * d, y: parent.pos.y + Math.sin(a) * d };
+        var ok = placed.every(function (q) { return Math.hypot(p.x - q.pos.x, p.y - q.pos.y) > 0.11; });
+        if (ok) { pos = p; break; }
+        if (!pos) pos = p;
+      }
+    } else {
+      var n = roots++;
+      var ang = n * 2.399963 + r() * 0.35;
+      var rad = 0.42 * Math.sqrt(n);
+      pos = { x: Math.cos(ang) * rad, y: Math.sin(ang) * rad * 0.85 };
+      it.color = PALETTE[n % PALETTE.length];
+    }
+    it.pos = pos; it.rgb = rgb(it.color);
+    placed.push(it);
+  });
+
+  var now = new Date();
+  items.forEach(function (it) {
+    var d = parseDate(it.date); it.d = d;
+    it.fresh = d && (now - d) / 864e5 <= 7 && (now - d) >= -864e5;
+    it.phase = (hash(it.id) % 628) / 100;
+  });
+
+  var latest = items[items.length - 1];
+  countEl.textContent = items.length + (items.length === 1 ? " thing" : " things") + " I've noticed so far";
+
+  /* ---------- star buttons (accessible, focusable hit targets) ---------- */
+  var selected = null, hovered = null;
+  items.forEach(function (it) {
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "star";
+    b.setAttribute("data-label", shortLabel(it));
+    b.setAttribute("aria-label", shortLabel(it));
+    b.addEventListener("click", function (e) { e.stopPropagation(); select(it.id); });
+    b.addEventListener("pointerenter", function () { hovered = it; });
+    b.addEventListener("pointerleave", function () { if (hovered === it) hovered = null; });
+    b.addEventListener("focus", function () { hovered = it; });
+    b.addEventListener("blur", function () { if (hovered === it) hovered = null; });
+    world.appendChild(b); it.btn = b;
+  });
+
+  /* ---------- screen mapping ---------- */
+  var W, H, dpr, S, cx, cy, midY;
+  var pan = { x: 0, y: 0 }, target = { x: 0, y: 0 };
+  var bgStars = [];
+
+  function layout() {
+    W = window.innerWidth; H = window.innerHeight; dpr = Math.min(window.devicePixelRatio || 1, 2);
+    [fg, bg].forEach(function (c) { c.width = W * dpr; c.height = H * dpr; });
+    fctx.setTransform(dpr, 0, 0, dpr, 0, 0); bctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    var minx = 1e9, maxx = -1e9, miny = 1e9, maxy = -1e9;
+    items.forEach(function (it) {
+      minx = Math.min(minx, it.pos.x); maxx = Math.max(maxx, it.pos.x);
+      miny = Math.min(miny, it.pos.y); maxy = Math.max(maxy, it.pos.y);
+    });
+    var padX = Math.min(90, W * 0.14), top = 130, bottom = 120;
+    var fitX = (W - 2 * padX) / Math.max(maxx - minx, 0.001);
+    var fitY = (H - top - bottom) / Math.max(maxy - miny, 0.001);
+    S = Math.max(Math.min(fitX, fitY, 300), 110);
+    cx = (minx + maxx) / 2; cy = (miny + maxy) / 2; midY = top + (H - top - bottom) / 2;
+
+    bgStars = [];
+    var r = rng(7), n = Math.round(W * H / 7000);
+    for (var i = 0; i < n; i++) bgStars.push({ x: r() * W, y: r() * H, s: r() * 1.1 + 0.3, p: r() * 6.28, a: r() * 0.5 + 0.15 });
+  }
+
+  function project() {
+    items.forEach(function (it) {
+      var sx = W / 2 + (it.pos.x - cx) * S + pan.x;
+      var sy = midY + (it.pos.y - cy) * S + pan.y;
+      if (sx !== it.sx || sy !== it.sy) {
+        it.sx = sx; it.sy = sy;
+        it.btn.style.transform = "translate(" + sx.toFixed(1) + "px," + sy.toFixed(1) + "px)";
+      }
+    });
+  }
+
+  /* ---------- drawing ---------- */
+  var t0 = null, step;
+  function reveal(it, el) {
+    if (reduce) return 1;
+    var v = (el - 500 - it.idx * step) / 700;
+    return v < 0 ? 0 : v > 1 ? 1 : v;
+  }
+  function rgba(c, a) { return "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + a + ")"; }
+
+  function frame(t) {
+    if (t0 === null) t0 = t;
+    var el = t - t0;
+    step = Math.min(260, 2400 / items.length);
+
+    pan.x += (target.x - pan.x) * 0.15; pan.y += (target.y - pan.y) * 0.15;
+    if (Math.abs(target.x - pan.x) < 0.05) pan.x = target.x;
+    if (Math.abs(target.y - pan.y) < 0.05) pan.y = target.y;
+    project();
+
+    // background dust
+    bctx.clearRect(0, 0, W, H);
+    for (var i = 0; i < bgStars.length; i++) {
+      var s = bgStars[i], tw = reduce ? 1 : 0.65 + 0.35 * Math.sin(t / 1400 + s.p);
+      bctx.fillStyle = "rgba(235,235,255," + (s.a * tw).toFixed(3) + ")";
+      bctx.fillRect(s.x, s.y, s.s, s.s);
+    }
+
+    // constellation
+    fctx.clearRect(0, 0, W, H);
+    fctx.lineWidth = 1;
+    items.forEach(function (it) {
+      var a = reveal(it, el);
+      if (a <= 0) return;
+      if (it.parent) {
+        fctx.setLineDash([]);
+        fctx.strokeStyle = rgba(it.rgb, 0.32 * a);
+        fctx.beginPath(); fctx.moveTo(it.parent.sx, it.parent.sy); fctx.lineTo(it.sx, it.sy); fctx.stroke();
+      }
+      (it.links || []).forEach(function (id) {
+        var o = byId[id]; if (!o || !o.pos) return;
+        var b = Math.min(a, reveal(o, el)); if (b <= 0) return;
+        fctx.setLineDash([3, 5]);
+        fctx.strokeStyle = rgba(it.rgb, 0.2 * b);
+        fctx.beginPath(); fctx.moveTo(o.sx, o.sy); fctx.lineTo(it.sx, it.sy); fctx.stroke();
+      });
+    });
+    fctx.setLineDash([]);
+
+    items.forEach(function (it) {
+      var a = reveal(it, el);
+      if (a <= 0) return;
+      var on = it === selected, hot = it === hovered;
+      var r = 2.4 + Math.min(it.kids, 4) * 0.55;
+      var tw = reduce ? 1 : 1 + 0.12 * Math.sin(t / 900 + it.phase);
+      var boost = (on ? 1.5 : hot ? 1.25 : 1) * tw;
+      var gr = r * 7 * boost;
+
+      var g = fctx.createRadialGradient(it.sx, it.sy, 0, it.sx, it.sy, gr);
+      g.addColorStop(0, rgba(it.rgb, 0.55 * a));
+      g.addColorStop(1, rgba(it.rgb, 0));
+      fctx.fillStyle = g;
+      fctx.beginPath(); fctx.arc(it.sx, it.sy, gr, 0, 6.2832); fctx.fill();
+
+      if (it.kids >= 2) {
+        fctx.strokeStyle = rgba(it.rgb, 0.5 * a);
+        var L = r * 3.4;
+        fctx.beginPath();
+        fctx.moveTo(it.sx - L, it.sy); fctx.lineTo(it.sx + L, it.sy);
+        fctx.moveTo(it.sx, it.sy - L); fctx.lineTo(it.sx, it.sy + L);
+        fctx.stroke();
+      }
+
+      fctx.fillStyle = "rgba(255,250,235," + (0.95 * a).toFixed(3) + ")";
+      fctx.beginPath(); fctx.arc(it.sx, it.sy, r * (on ? 1.3 : 1), 0, 6.2832); fctx.fill();
+
+      if (on) {
+        fctx.strokeStyle = rgba(it.rgb, 0.8);
+        fctx.beginPath(); fctx.arc(it.sx, it.sy, r + 7, 0, 6.2832); fctx.stroke();
+      }
+      if (it.fresh && !reduce) {
+        var ph = (t / 1800 + it.phase) % 1;
+        fctx.strokeStyle = rgba(it.rgb, 0.6 * (1 - ph) * a);
+        fctx.beginPath(); fctx.arc(it.sx, it.sy, r + 4 + ph * 16, 0, 6.2832); fctx.stroke();
+      } else if (it.fresh) {
+        fctx.strokeStyle = rgba(it.rgb, 0.5);
+        fctx.beginPath(); fctx.arc(it.sx, it.sy, r + 8, 0, 6.2832); fctx.stroke();
+      }
+    });
+
+    requestAnimationFrame(frame);
+  }
+
+  /* ---------- detail card ---------- */
+  var cardDate = document.getElementById("cardDate"),
+      cardText = document.getElementById("cardText"),
+      cardRel = document.getElementById("cardRel");
+
+  function relRow(label, list) {
+    if (!list.length) return;
+    var row = document.createElement("div"); row.className = "rel";
+    var s = document.createElement("span"); s.textContent = label; row.appendChild(s);
+    list.forEach(function (o) {
+      var c = document.createElement("button");
+      c.type = "button"; c.className = "chip"; c.textContent = shortLabel(o);
+      c.addEventListener("click", function () { select(o.id); });
+      row.appendChild(c);
+    });
+    cardRel.appendChild(row);
+  }
+
+  function select(id) {
+    var it = id ? byId[id] : null;
+    selected = it;
+    items.forEach(function (o) { o.btn.classList.toggle("sel", o === it); });
+    if (!it) { card.classList.remove("open"); return; }
+
+    cardDate.textContent = it.d ? "Noticed on " + fmtDate(it.d) : "";
+    cardText.textContent = it.text;
+    cardRel.innerHTML = "";
+    var kids = items.filter(function (o) { return o.parent === it; });
+    var linked = [];
+    (it.links || []).forEach(function (l) { if (byId[l]) linked.push(byId[l]); });
+    items.forEach(function (o) { if ((o.links || []).indexOf(it.id) > -1 && linked.indexOf(o) < 0) linked.push(o); });
+    relRow("Grew from", it.parent ? [it.parent] : []);
+    relRow("Led to", kids);
+    relRow("Also connected to", linked);
+    card.classList.add("open");
+
+    // keep the chosen star visible above the card
+    var cardH = card.offsetHeight, limit = H - cardH - 70;
+    if (it.sy > limit) target.y = pan.y - (it.sy - limit);
+    else if (it.sy < 110) target.y = pan.y + (110 - it.sy);
+    var maxX = W - 40; if (it.sx > maxX) target.x = pan.x - (it.sx - maxX);
+    if (it.sx < 40) target.x = pan.x + (40 - it.sx);
+  }
+
+  document.getElementById("close").addEventListener("click", function () { select(null); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") select(null); });
+
+  /* ---------- drag to explore ---------- */
+  var drag = null;
+  world.addEventListener("pointerdown", function (e) {
+    if (e.target.closest(".star")) return;
+    drag = { x: e.clientX, y: e.clientY, px: pan.x, py: pan.y, moved: false };
+    world.setPointerCapture(e.pointerId); world.classList.add("drag");
+  });
+  world.addEventListener("pointermove", function (e) {
+    if (!drag) return;
+    var dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if (Math.hypot(dx, dy) > 4) drag.moved = true;
+    pan.x = target.x = drag.px + dx; pan.y = target.y = drag.py + dy;
+  });
+  function endDrag() {
+    if (drag && !drag.moved) select(null);
+    drag = null; world.classList.remove("drag");
+  }
+  world.addEventListener("pointerup", endDrag);
+  world.addEventListener("pointercancel", endDrag);
+
+  window.addEventListener("resize", function () { layout(); items.forEach(function (it) { it.sx = null; }); });
+
+  layout();
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
