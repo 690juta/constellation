@@ -236,7 +236,7 @@
   });
 
   var latest = items[items.length - 1];
-  countEl.textContent = items.length + (items.length === 1 ? " thing" : " things") + " I've noticed so far";
+  countEl.textContent = (data.subtitle || "{n} things I've noticed so far").replace("{n}", items.length);
 
   /* ---------- star buttons (accessible, focusable hit targets) ---------- */
   var selected = null, hovered = null;
