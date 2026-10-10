@@ -18,7 +18,7 @@
   spot what's new. Keep the order of the list = the order you noticed things.
 */
 window.MEMORIES = {
-  title: "Things I've noticed about you",
+  title: "A Constellation of You",
   items: [
     {
       id: "animals",
