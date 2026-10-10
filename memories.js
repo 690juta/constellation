@@ -233,6 +233,68 @@ window.MEMORIES = {
       text: "She has had a beloved monkey doll for a long time.",
       date: "2026-10-10",
       links: ["childhood"]
+    },
+    {
+      id: "tender",
+      label: "Her tender feelings",
+      text: "Her feelings are very tender.",
+      date: "2026-10-10"
+    },
+    {
+      id: "sadness",
+      label: "The sadness I've seen",
+      text: "Sometimes I see sadness in her heart.",
+      date: "2026-10-10",
+      from: "tender"
+    },
+    {
+      id: "big-heart",
+      label: "She has a big heart",
+      text: "But she has a big heart.",
+      date: "2026-10-10",
+      from: "tender"
+    },
+    {
+      id: "brave",
+      label: "She is very brave",
+      text: "She is also very brave.",
+      date: "2026-10-10",
+      from: "big-heart"
+    },
+    {
+      id: "hard-times",
+      label: "When it was hard",
+      text: "I remember how disappointed, angry, and sad she was.",
+      date: "2026-10-10"
+    },
+    {
+      id: "kept-walking",
+      label: "But she kept walking",
+      text: "But she kept walking.",
+      date: "2026-10-10",
+      from: "hard-times"
+    },
+    {
+      id: "walking-clearly",
+      label: "I remember it clearly",
+      text: "I remember clearly how she kept walking, even though it may have been difficult for her.",
+      date: "2026-10-10",
+      from: "kept-walking"
+    },
+    {
+      id: "hurt",
+      label: "How it hurt her",
+      text: "I always remember how it hurt her.",
+      date: "2026-10-10",
+      from: "hard-times"
+    },
+    {
+      id: "and-yet",
+      label: "And yet, she kept walking",
+      text: "And yet, she kept walking.",
+      date: "2026-10-10",
+      from: "hurt",
+      links: ["kept-walking"]
     }
   ]
 };
