@@ -105,6 +105,22 @@
   }
   .chip:hover { border-color: var(--gold); }
 
+  #music {
+    position: fixed; z-index: 4;
+    top: calc(env(safe-area-inset-top, 0px) + 1.1rem); right: 1.1rem;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    min-height: 44px; padding: 0 1rem 0 0.85rem;
+    border: 1px solid rgba(245, 238, 220, 0.25); border-radius: 999px;
+    background: var(--panel); color: var(--dim);
+    font: 400 0.85rem var(--sans); cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  #music:hover, #music.on { color: var(--ink); border-color: var(--gold); }
+  #music:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  #music .w { display: none; }
+  #music.on .w { display: inline; }
+  #music.on .x { display: none; }
+
   #empty {
     position: fixed; inset: 0; display: none; place-items: center; text-align: center;
     padding: 2rem; color: var(--dim); font-family: var(--serif); font-size: 1.2rem;
@@ -118,6 +134,16 @@
     <h1 id="title">Things I've noticed about you</h1>
     <p class="count" id="count"></p>
   </header>
+
+  <button id="music" type="button" aria-pressed="false" aria-label="Play music">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M4 9v6h4l5 4V5L8 9H4z"/>
+      <path class="w" d="M16.5 8.5a5 5 0 0 1 0 7"/>
+      <path class="w" d="M19 6a8.5 8.5 0 0 1 0 12"/>
+      <path class="x" d="M16 9l5 6M21 9l-5 6"/>
+    </svg>
+    <span>Music</span>
+  </button>
 
   <main id="world" aria-label="Constellation of memories">
     <canvas id="fg" aria-hidden="true"></canvas>
@@ -427,6 +453,40 @@
 
   layout();
   requestAnimationFrame(frame);
+})();
+</script>
+<script>
+(function () {
+  var btn = document.getElementById("music");
+  var audio = new Audio("song.mp3");
+  audio.loop = true; audio.preload = "metadata"; audio.volume = 0;
+  var LEVEL = 0.5, timer;
+
+  function fade(to, done) {
+    clearInterval(timer);
+    timer = setInterval(function () {
+      var d = to - audio.volume;
+      if (Math.abs(d) < 0.03) { audio.volume = to; clearInterval(timer); if (done) done(); }
+      else audio.volume = Math.max(0, Math.min(1, audio.volume + (d > 0 ? 0.03 : -0.03)));
+    }, 60);
+  }
+  function setOn(on) {
+    btn.classList.toggle("on", on);
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
+    btn.setAttribute("aria-label", on ? "Pause music" : "Play music");
+  }
+  function hide() { btn.hidden = true; btn.style.display = "none"; }
+
+  audio.addEventListener("error", hide);
+  btn.addEventListener("click", function () {
+    if (audio.paused) {
+      var p = audio.play();
+      setOn(true); fade(LEVEL);
+      if (p && p.catch) p.catch(function () { setOn(false); if (audio.error) hide(); });
+    } else {
+      setOn(false); fade(0, function () { audio.pause(); });
+    }
+  });
 })();
 </script>
 </body>
