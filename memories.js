@@ -14,6 +14,9 @@
     links  (optional) ids of other memories it also connects to,
            drawn as a faint dashed line. e.g. links: ["animals"]
 
+  The "intro" block is the cover page she sees first. Reword it freely; delete
+  the whole block if you ever want the sky to open straight away.
+
   The small line under the title is the "subtitle" below. {n} is replaced
   by the number of stars, so you can reword it however you like.
 
@@ -23,6 +26,17 @@
 window.MEMORIES = {
   title: "A Constellation of You",
   subtitle: "{n} stars, and counting",
+  intro: {
+    kicker: "Something I made for you",
+    heading: "A Constellation of You",
+    paragraphs: [
+      "Everything in this sky is something I remember about you. Some of it is big, a lot of it is small, and all of it stayed with me.",
+      "Each star is one memory. Tap a star to read it. A line shows where one memory grew out of another, and each color is a little family of stars that belong together.",
+      "It isn't finished. Whenever I notice something new, a new star will appear, and for a week it will glow so you can find it.",
+      "Take your time. If you'd like a song to wander with, tap Music in the corner."
+    ],
+    button: "Next"
+  },
   items: [
     {
       id: "animals",
