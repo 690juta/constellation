@@ -14,8 +14,9 @@
     links  (optional) ids of other memories it also connects to,
            drawn as a faint dashed line. e.g. links: ["animals"]
 
-  The "intro" block is the cover page she sees first. "duration" is roughly how
-  many seconds the credits take to scroll; "speed" is used if you remove it. Reword it freely; delete
+  The "intro" block is the cover page she sees first. "speed" is how fast the credits
+  scroll, in pixels per second. Smaller = slower (try 20-35). Adding a "duration"
+  line (in seconds) would instead make the page choose the speed itself. Reword it freely; delete
   the whole block if you ever want the sky to open straight away.
 
   The small line under the title is the "subtitle" below. {n} is replaced
@@ -47,8 +48,7 @@ window.MEMORIES = {
       "It isn't finished. Whenever I notice something new, a new star will appear, and for a week it will glow so you can find it.",
       "Take your time. If you'd like a song to wander with, tap Music in the corner."
     ],
-    duration: 55,
-    speed: 30,
+    speed: 25,
     button: "Next"
   },
   items: [
