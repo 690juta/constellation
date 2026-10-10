@@ -132,7 +132,10 @@
     <div id="cardRel"></div>
   </section>
 
-<script src="memories.js"></script>
+<script>
+  // Always fetch the latest memories.js so new stars show up right away
+  document.write('<script src="memories.js?t=' + Date.now() + '"><\/script>');
+</script>
 <script>
 (function () {
   var data = window.MEMORIES || { items: [] };
