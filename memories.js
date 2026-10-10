@@ -422,6 +422,142 @@ window.MEMORIES = {
       label: "What's in her head",
       text: "And what's in her head! She's smart. She knows so many things.",
       date: "2026-10-10"
+    },
+    {
+      id: "hanbin",
+      label: "Her favorite Korean actor",
+      text: "Her favorite Korean actor is Hanbin B.I.",
+      date: "2026-10-10",
+      from: "kdrama"
+    },
+    {
+      id: "theo",
+      label: "Her favorite Western actor",
+      text: "Her favorite Western actor is Theo James.",
+      date: "2026-10-10",
+      from: "thrillers"
+    },
+    {
+      id: "friends",
+      label: "Her close friends",
+      text: "She has a few close friends.",
+      date: "2026-10-10"
+    },
+    {
+      id: "hs-friends",
+      label: "Her high school friends",
+      text: "Her high school friends were mostly male, with only three girls, herself included.",
+      date: "2026-10-10",
+      from: "friends"
+    },
+    {
+      id: "childhood-friends",
+      label: "Her childhood friends",
+      text: "She has three childhood friends: Nida, Aslla, and Shenny.",
+      date: "2026-10-10",
+      from: "friends"
+    },
+    {
+      id: "college-friends",
+      label: "Her college friends",
+      text: "She had about three or four college friends, and the one I remember most is Cahya.",
+      date: "2026-10-10",
+      from: "friends"
+    },
+    {
+      id: "stickers",
+      label: "Her WhatsApp stickers",
+      text: "She collects a few annoying WhatsApp stickers.",
+      date: "2026-10-10"
+    },
+    {
+      id: "laugh",
+      label: "Her laugh",
+      text: "I love seeing her laugh, because it really lifts my mood, haha.",
+      date: "2026-10-10"
+    },
+    {
+      id: "wakes-dawn",
+      label: "She wakes at dawn",
+      text: "She wakes up at dawn, around 4:00 or 5:00 AM, and then again between 7:00 and 7:30.",
+      date: "2026-10-10"
+    },
+    {
+      id: "long-bath",
+      label: "Long baths",
+      text: "She takes a long time to bathe.",
+      date: "2026-10-10",
+      from: "wakes-dawn"
+    },
+    {
+      id: "birthday",
+      label: "Her birthday at BXSEA",
+      text: "An unforgettable moment: celebrating her birthday at BXSEA.",
+      date: "2026-10-10"
+    },
+    {
+      id: "tag-along",
+      label: "Her offer to tag along",
+      text: "The last thing she did that made me smile was her offer to tag along whenever I need company for the little things.",
+      date: "2026-10-10"
+    },
+    {
+      id: "calm",
+      label: "She brings calm",
+      text: "She always brings a sense of calm to the middle of my non-stop life.",
+      date: "2026-10-10"
+    },
+    {
+      id: "scent",
+      label: "Her scent",
+      text: "She smells so good, hahaha, and I absolutely love the scent.",
+      date: "2026-10-10"
+    },
+    {
+      id: "tomato-keychain",
+      label: "Her tomato keychain",
+      text: "She has a cute tomato-shaped keychain.",
+      date: "2026-10-10",
+      from: "bag-charms"
+    },
+    {
+      id: "sleep-longer",
+      label: "When she's tired",
+      text: "When she's tired, she usually needs to sleep longer.",
+      date: "2026-10-10",
+      from: "dark-sleep"
+    },
+    {
+      id: "cares",
+      label: "She cares about everyone",
+      text: "She truly cares about the people around her: her family, her friends, and even someone she may never have met.",
+      date: "2026-10-10",
+      from: "big-heart"
+    },
+    {
+      id: "confidence",
+      label: "Her self-confidence",
+      text: "Sometimes she feels a lack of self-confidence.",
+      date: "2026-10-10",
+      from: "tender"
+    },
+    {
+      id: "introvert",
+      label: "She's an introvert",
+      text: "She is also an introvert.",
+      date: "2026-10-10"
+    },
+    {
+      id: "blood-type",
+      label: "Blood type O",
+      text: "Her blood type is O.",
+      date: "2026-10-10"
+    },
+    {
+      id: "into-me",
+      label: "Totally into me",
+      text: "She's totally into me, hahaha.",
+      date: "2026-10-10"
     }
   ]
 };
