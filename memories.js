@@ -634,6 +634,54 @@ window.MEMORIES = {
       label: "When she's flirting",
       text: "She is very beautiful and funny when she is flirting.",
       date: "2026-10-11"
+    },
+    {
+      id: "going-out",
+      label: "Happiest going out",
+      text: "She is happiest when she's going out, especially to a place she wants to visit.",
+      date: "2026-10-11",
+      from: "trying-new"
+    },
+    {
+      id: "birthday-date",
+      label: "Her birthday",
+      text: "Her birthday is on the 29th of September.",
+      date: "2026-10-11",
+      from: "birthday"
+    },
+    {
+      id: "libra",
+      label: "She's a Libra",
+      text: "Her zodiac sign is Libra.",
+      date: "2026-10-11",
+      from: "birthday-date"
+    },
+    {
+      id: "aster",
+      label: "Her birth flower",
+      text: "Her birth flower is the aster, and another name for aster is 'star,' hahaha.",
+      date: "2026-10-11",
+      from: "birthday-date"
+    },
+    {
+      id: "firstborn",
+      label: "The firstborn",
+      text: "She is the firstborn child.",
+      date: "2026-10-11"
+    },
+    {
+      id: "brother",
+      label: "Her younger brother",
+      text: "She has a younger brother.",
+      date: "2026-10-11",
+      from: "firstborn"
+    },
+    {
+      id: "encing",
+      label: "Bude is Encing",
+      text: "She just told me that in her Betawi family, what Javanese call 'Bude' is 'Encing,' hahaha.",
+      date: "2026-10-11",
+      from: "firstborn"
     }
   ]
 };
