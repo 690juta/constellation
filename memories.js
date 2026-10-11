@@ -682,6 +682,47 @@ window.MEMORIES = {
       text: "She just told me that in her Betawi family, what Javanese call 'Bude' is 'Encing,' hahaha.",
       date: "2026-10-11",
       from: "firstborn"
+    },
+    {
+      id: "eye-on-her",
+      label: "Long before now",
+      text: "Right from the start, I had my eye on her. I'd noticed her a few times long before now.",
+      date: "2026-10-11"
+    },
+    {
+      id: "pop-ice",
+      label: "A Pop Ice, long ago",
+      text: "I remember buying her a Pop Ice when we were little. She has definitely forgotten it, though. It was back in elementary school, if I recall correctly, haha.",
+      date: "2026-10-11",
+      from: "eye-on-her"
+    },
+    {
+      id: "junior-high",
+      label: "Junior high, by the field",
+      text: "I remember her clique in junior high, mostly popular people. Her classroom was right at the front near the field, and she often sat just outside it.",
+      date: "2026-10-11",
+      from: "eye-on-her"
+    },
+    {
+      id: "first-message",
+      label: "Her first message",
+      text: "I remember the first time she reached out to me as an adult. She wanted to join the same workplace as me, and she sent me a DM on Instagram, haha.",
+      date: "2026-10-11",
+      from: "eye-on-her"
+    },
+    {
+      id: "work-friends",
+      label: "Friends from work",
+      text: "She has close friends from the same workplace as me: Nida, Syifa, and Wullan, and me too. They are all kind to her.",
+      date: "2026-10-11",
+      from: "friends"
+    },
+    {
+      id: "nice-friends",
+      label: "Her friends are kind",
+      text: "All of her friends are very nice.",
+      date: "2026-10-11",
+      from: "friends"
     }
   ]
 };
