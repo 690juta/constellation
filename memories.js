@@ -519,8 +519,8 @@ window.MEMORIES = {
     },
     {
       id: "birthday",
-      label: "Her birthday at BXSEA",
-      text: "An unforgettable moment: celebrating her birthday at BXSEA.",
+      label: "Her birthday at BXSea",
+      text: "An unforgettable moment: celebrating her birthday at BXSea.",
       date: "2026-10-10"
     },
     {
@@ -723,6 +723,61 @@ window.MEMORIES = {
       text: "All of her friends are very nice.",
       date: "2026-10-11",
       from: "friends"
+    },
+    {
+      id: "poker-face",
+      label: "Poker face pro",
+      text: "She's a pro at the poker face, haha.",
+      date: "2026-10-12"
+    },
+    {
+      id: "shy",
+      label: "Cute when she's shy",
+      text: "But she is really cute when she's being shy.",
+      date: "2026-10-12",
+      from: "poker-face"
+    },
+    {
+      id: "fish-outfit",
+      label: "Her fish outfit",
+      text: "She wore a fish outfit when we went to BXSea, and it was so cute.",
+      date: "2026-10-12",
+      from: "birthday",
+      links: ["be-a-fish"]
+    },
+    {
+      id: "bxsea-beautiful",
+      label: "Beautiful at BXSea",
+      text: "She was really beautiful when we went to BXSea together.",
+      date: "2026-10-12",
+      from: "birthday"
+    },
+    {
+      id: "bxsea-happy",
+      label: "Her face walking in",
+      text: "She was so happy to be taken to BXSea, hahaha. You could tell just by looking at her face when she first walked in.",
+      date: "2026-10-12",
+      from: "birthday"
+    },
+    {
+      id: "bxsea-friends",
+      label: "Her friends asked about it",
+      text: "She said a lot of her friends were asking about BXSea.",
+      date: "2026-10-12",
+      from: "birthday"
+    },
+    {
+      id: "same-place",
+      label: "Same place, different days",
+      text: "She said that she and her friends often go to the same place, but on different days. Cool.",
+      date: "2026-10-12",
+      from: "friends"
+    },
+    {
+      id: "polka-dots",
+      label: "Polka dots at the wedding",
+      text: "When we went to a wedding together, she wore a polka dot dress and looked really pretty, hahaha.",
+      date: "2026-10-12"
     }
   ]
 };
