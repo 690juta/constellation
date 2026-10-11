@@ -586,6 +586,54 @@ window.MEMORIES = {
       label: "Totally into me",
       text: "She's totally into me, hahaha.",
       date: "2026-10-10"
+    },
+    {
+      id: "avocado-juice",
+      label: "Avocado juice",
+      text: "She likes drinking avocado juice.",
+      date: "2026-10-11",
+      from: "drinks"
+    },
+    {
+      id: "pony",
+      label: "The pastry called Pony",
+      text: "The pastry she likes in Blok M is called Pony.",
+      date: "2026-10-11",
+      from: "croissant"
+    },
+    {
+      id: "corn-matcha",
+      label: "Corn milk matcha",
+      text: "We once tried drinking matcha together, and she liked the corn milk matcha variant.",
+      date: "2026-10-11",
+      from: "matcha"
+    },
+    {
+      id: "english",
+      label: "Good at English",
+      text: "She is good at English.",
+      date: "2026-10-11",
+      from: "smart"
+    },
+    {
+      id: "stunning",
+      label: "Absolutely stunning",
+      text: "She is absolutely stunning.",
+      date: "2026-10-11",
+      from: "looks"
+    },
+    {
+      id: "meticulous",
+      label: "Very meticulous",
+      text: "She is very meticulous.",
+      date: "2026-10-11",
+      from: "smart"
+    },
+    {
+      id: "flirting",
+      label: "When she's flirting",
+      text: "She is very beautiful and funny when she is flirting.",
+      date: "2026-10-11"
     }
   ]
 };
