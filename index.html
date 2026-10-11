@@ -108,6 +108,14 @@
   header { transition: opacity 1.2s ease 0.4s; }
   body.has-cover header { opacity: 0; }
 
+  #restart {
+    min-height: 44px; margin: 0.3rem 0 0 -0.6rem; padding: 0 0.6rem;
+    border: 0; border-radius: 999px; background: none; color: var(--dim);
+    font: 400 0.85rem var(--sans); cursor: pointer; pointer-events: auto;
+  }
+  #restart:hover { color: var(--ink); }
+  #restart:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
   #cover {
     position: fixed; inset: 0; z-index: 6;
     transition: opacity 0.9s ease, visibility 0s linear 0.9s;
@@ -176,6 +184,7 @@
   <header>
     <h1 id="title">Things I've noticed about you</h1>
     <p class="count" id="count"></p>
+    <button id="restart" type="button" hidden>&larr; Back to start</button>
   </header>
 
   <button id="music" type="button" aria-pressed="false" aria-label="Play music">
@@ -228,9 +237,15 @@
 
   /* ---------- optional cover page (from "intro" in memories.js) ---------- */
   var began = true, t0 = null;
-  if (data.intro) {
-    began = false;
+  var restartBtn = document.getElementById("restart");
+
+  function showCover() {
     var intro = data.intro;
+    var oldCover = document.getElementById("cover");
+    if (oldCover && oldCover.parentNode) oldCover.parentNode.removeChild(oldCover);
+    began = false;
+    restartBtn.hidden = true;
+
     var cover = document.createElement("section");
     cover.id = "cover"; cover.setAttribute("aria-label", "Introduction");
     var scroller = document.createElement("div"); scroller.className = "scroll";
@@ -277,10 +292,21 @@
       cover.classList.add("gone");
       document.body.classList.remove("has-cover");
       world.removeAttribute("inert");
+      restartBtn.hidden = false;
       began = true; t0 = null;
       setTimeout(function () { if (cover.parentNode) cover.parentNode.removeChild(cover); }, 1200);
     });
     next.focus();
+  }
+
+  if (data.intro) {
+    showCover();
+    restartBtn.addEventListener("click", function () {
+      select(null);
+      hovered = null;
+      pan.x = pan.y = target.x = target.y = 0;
+      showCover();
+    });
   }
 
   /* ---------- helpers ---------- */
