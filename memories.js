@@ -931,6 +931,20 @@ window.MEMORIES = {
       text: "That night, I promised myself I would always try to be better, for myself and for her. I would keep learning her language.",
       date: "2026-10-12",
       from: "oct-12"
+    },
+    {
+      id: "fried-egg",
+      label: "Her fried egg",
+      text: "The egg dish she likes to make is a fried egg with soy sauce, chili powder, and rice.",
+      date: "2026-10-13",
+      from: "food"
+    },
+    {
+      id: "omelet",
+      label: "Her omelet",
+      text: "She said she also likes omelets mixed with onions, chili, and soy sauce, so the eggs turn a bit black.",
+      date: "2026-10-13",
+      from: "fried-egg"
     }
   ]
 };
