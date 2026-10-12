@@ -778,6 +778,27 @@ window.MEMORIES = {
       label: "Polka dots at the wedding",
       text: "When we went to a wedding together, she wore a polka dot dress and looked really pretty, hahaha.",
       date: "2026-10-12"
+    },
+    {
+      id: "rough-days",
+      label: "When she pulled back",
+      text: "I remember there were times when one of us, or maybe just her, had a rough day at the office, and she would choose to distance herself from me a little.",
+      date: "2026-10-12"
+    },
+    {
+      id: "asked-around",
+      label: "Asking through her people",
+      text: "So I always asked about her through the people close to her.",
+      date: "2026-10-12",
+      from: "rough-days"
+    },
+    {
+      id: "fish-keychain",
+      label: "The fish keychain",
+      text: "I remember the first time she gave me a gift after the 'cold war'. It was a fish keychain, hahaha. I was honestly so happy.",
+      date: "2026-10-12",
+      from: "rough-days",
+      links: ["fish"]
     }
   ]
 };
