@@ -799,6 +799,138 @@ window.MEMORIES = {
       date: "2026-10-12",
       from: "rough-days",
       links: ["fish"]
+    },
+    {
+      id: "oct-12",
+      label: "October 12th",
+      text: "October 12th was the day she discovered the existence of these stars.",
+      date: "2026-10-12"
+    },
+    {
+      id: "nervous",
+      label: "How nervous I was",
+      text: "I remember being very nervous at that time.",
+      date: "2026-10-12",
+      from: "oct-12"
+    },
+    {
+      id: "funny-then",
+      label: "How funny she was",
+      text: "I remember how funny she was back then.",
+      date: "2026-10-12",
+      from: "oct-12"
+    },
+    {
+      id: "introduced",
+      label: "The person I am now",
+      text: "She was the first person I introduced to the person I am now, someone much better.",
+      date: "2026-10-12",
+      from: "oct-12"
+    },
+    {
+      id: "different-person",
+      label: "Someone I never expected",
+      text: "At that moment, I let myself become a different person, someone I never expected to be, in front of her.",
+      date: "2026-10-12",
+      from: "introduced"
+    },
+    {
+      id: "close-to-her",
+      label: "Close to her",
+      text: "I remember what it felt like to be close to her when I told her this: her smile, her touch, and how beautiful she looked in that moment.",
+      date: "2026-10-12",
+      from: "oct-12"
+    },
+    {
+      id: "great-calm",
+      label: "A great sense of calm",
+      text: "She brings a great sense of calm.",
+      date: "2026-10-12",
+      from: "calm"
+    },
+    {
+      id: "no-worry",
+      label: "No more worry",
+      text: "I no longer worry when I'm near her.",
+      date: "2026-10-12",
+      from: "calm"
+    },
+    {
+      id: "no-fear",
+      label: "No more fear",
+      text: "I no longer feel afraid when I'm with her.",
+      date: "2026-10-12",
+      from: "calm"
+    },
+    {
+      id: "open-up",
+      label: "Talking about myself",
+      text: "I am not afraid when I talk about myself while I am with her.",
+      date: "2026-10-12",
+      from: "no-fear"
+    },
+    {
+      id: "happy-day",
+      label: "A day that made me happy",
+      text: "I will always remember this day, October 12th, as one of the days that made me very happy, because of her.",
+      date: "2026-10-12",
+      from: "oct-12"
+    },
+    {
+      id: "remember-again",
+      label: "I will keep remembering",
+      text: "Once again, I will keep remembering this day, October 12th.",
+      date: "2026-10-12",
+      from: "happy-day"
+    },
+    {
+      id: "loving",
+      label: "A loving person",
+      text: "She is a loving person, hahaha.",
+      date: "2026-10-12",
+      from: "big-heart"
+    },
+    {
+      id: "beautiful-night",
+      label: "Beautiful that night",
+      text: "She was very beautiful that night.",
+      date: "2026-10-12",
+      from: "oct-12"
+    },
+    {
+      id: "loved-respected",
+      label: "Loved and respected",
+      text: "That night, October 12th, I really wanted her to know that she was loved and respected.",
+      date: "2026-10-12",
+      from: "oct-12"
+    },
+    {
+      id: "keep-loving",
+      label: "I will keep loving her",
+      text: "So I will keep loving her, and never tire of doing so, and keep showing just how precious she is.",
+      date: "2026-10-12",
+      from: "loved-respected"
+    },
+    {
+      id: "looking-after",
+      label: "Looking after her",
+      text: "I will also keep looking after her, in my own way and to the best of my ability. I will protect her.",
+      date: "2026-10-12",
+      from: "loved-respected"
+    },
+    {
+      id: "unconditional",
+      label: "Unconditionally",
+      text: "I will always love her unconditionally, and never tire of doing so.",
+      date: "2026-10-12",
+      from: "keep-loving"
+    },
+    {
+      id: "promise",
+      label: "A promise to myself",
+      text: "That night, I promised myself I would always try to be better, for myself and for her. I would keep learning her language.",
+      date: "2026-10-12",
+      from: "oct-12"
     }
   ]
 };
