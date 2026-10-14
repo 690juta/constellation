@@ -1070,6 +1070,74 @@ window.MEMORIES = {
       text: "The first gift I gave her for her birthday was a pair of red flats, hahaha, because I knew from her friend that she wanted them.",
       date: "2026-10-13",
       from: "birthday-date"
+    },
+    {
+      id: "jogja",
+      label: "Our first trip to Jogja",
+      text: "Our first trip to Jogja, with the other friends.",
+      date: "2026-10-14"
+    },
+    {
+      id: "jogja-rocks",
+      label: "Photos by the rocks",
+      text: "There was a moment the two of us shared, looking for a photo spot near the rocks. I took a few pictures of her, and she looked absolutely beautiful then.",
+      date: "2026-10-14",
+      from: "jogja"
+    },
+    {
+      id: "jogja-beach",
+      label: "The beach that night",
+      text: "That night, out of curiosity, we also went to the beach with some other friends and took photos together.",
+      date: "2026-10-14",
+      from: "jogja"
+    },
+    {
+      id: "miss-her",
+      label: "I miss her",
+      text: "I miss her a little bit now.",
+      date: "2026-10-14"
+    },
+    {
+      id: "first-move",
+      label: "She waits for the first move",
+      text: "She's the type of person who needs the other person to make the first move, like starting a chat, but her response is quite good.",
+      date: "2026-10-14",
+      from: "introvert"
+    },
+    {
+      id: "angry-cute",
+      label: "Cuter when she's angry",
+      text: "When she gets angry, she actually becomes even cuter.",
+      date: "2026-10-14",
+      from: "shy"
+    },
+    {
+      id: "hard-to-get",
+      label: "Hard to get, again",
+      text: "Apparently, she's planning to play hard to get with me again.",
+      date: "2026-10-14",
+      from: "flirting"
+    },
+    {
+      id: "nice-eyes",
+      label: "Her nice eyes",
+      text: "She also has nice eyes.",
+      date: "2026-10-14",
+      from: "eyes"
+    },
+    {
+      id: "responding",
+      label: "How she responds",
+      text: "She is really good at responding to others. She knows exactly how to carry herself and what to say.",
+      date: "2026-10-14",
+      from: "smart"
+    },
+    {
+      id: "lake-toba",
+      label: "Lake Toba",
+      text: "She wants to go to Lake Toba. She just mentioned it, haha.",
+      date: "2026-10-14",
+      from: "going-out"
     }
   ]
 };
