@@ -1138,6 +1138,56 @@ window.MEMORIES = {
       text: "She wants to go to Lake Toba. She just mentioned it, haha.",
       date: "2026-10-14",
       from: "going-out"
+    },
+    {
+      id: "straightforward",
+      label: "She's straightforward",
+      text: "I also like her because she's straightforward. If she wants something, she says so, and if she doesn't, she says so.",
+      date: "2026-10-14"
+    },
+    {
+      id: "mbok-darmi",
+      label: "Mbok Darmi chocolate oat milk",
+      text: "She likes Mbok Darmi's chocolate oat milk.",
+      date: "2026-10-14",
+      from: "drinks",
+      links: ["chocolate"]
+    },
+    {
+      id: "hophop",
+      label: "SilverQueen HopHop",
+      text: "She likes the SilverQueen-flavored HopHop.",
+      date: "2026-10-14",
+      from: "drinks",
+      links: ["chocolate"]
+    },
+    {
+      id: "cola",
+      label: "Coca-Cola",
+      text: "For soda drinks, she likes Coca-Cola.",
+      date: "2026-10-14",
+      from: "drinks"
+    },
+    {
+      id: "koi-wintermelon",
+      label: "Wintermelon at KOI",
+      text: "She wants to try the wintermelon milk tea from KOI.",
+      date: "2026-10-14",
+      from: "tea-orders"
+    },
+    {
+      id: "sushi",
+      label: "Sushi, mostly salmon",
+      text: "She likes eating sushi. She enjoys almost all kinds, but she goes for salmon most often.",
+      date: "2026-10-14",
+      from: "seafood"
+    },
+    {
+      id: "sushi-tei-salad",
+      label: "The salad at Sushi Tei",
+      text: "She also really likes the salad at Sushi Tei.",
+      date: "2026-10-14",
+      from: "sushi"
     }
   ]
 };
