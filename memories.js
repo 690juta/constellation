@@ -1188,6 +1188,55 @@ window.MEMORIES = {
       text: "She also really likes the salad at Sushi Tei.",
       date: "2026-10-14",
       from: "sushi"
+    },
+    {
+      id: "ribs",
+      label: "Grilled ribs",
+      text: "We went to eat grilled ribs together.",
+      date: "2026-10-15"
+    },
+    {
+      id: "keychain-events",
+      label: "Keychain creator events",
+      text: "She mentioned that she loves going to events for local keychain creators, because for her it's like paradise, hahaha.",
+      date: "2026-10-16",
+      from: "bag-charms"
+    },
+    {
+      id: "keychain-cahya",
+      label: "Cute finds with Cahya",
+      text: "She went to that keychain event with her friend Cahya and spent money on buying cute items.",
+      date: "2026-10-16",
+      from: "keychain-events",
+      links: ["college-friends"]
+    },
+    {
+      id: "keychain-millions",
+      label: "Spending millions, hahaha",
+      text: "She also mentioned that people who attend the event can end up spending millions just to buy those cute items, hahaha.",
+      date: "2026-10-16",
+      from: "keychain-events"
+    },
+    {
+      id: "pouch",
+      label: "She'd pick a pouch",
+      text: "Compared to a keychain, she would prefer something like a pouch, because it is more practical.",
+      date: "2026-10-16",
+      from: "keychain-events"
+    },
+    {
+      id: "dark-colors",
+      label: "A pop of color",
+      text: "She said I'm better suited to dark colors, but she also thinks it would be even more of a statement if there were one element that gave a pop of color.",
+      date: "2026-10-16",
+      from: "colors"
+    },
+    {
+      id: "love-her-stories",
+      label: "Her stories",
+      text: "I will always remember, and never get tired of saying, that I absolutely love it when she shares things about herself: where she's been, what she's seen, and everything from what makes her happy to what makes her sad. I just really love listening to her stories.",
+      date: "2026-10-16",
+      from: "love-her-talking"
     }
   ]
 };
