@@ -1237,6 +1237,73 @@ window.MEMORIES = {
       text: "I will always remember, and never get tired of saying, that I absolutely love it when she shares things about herself: where she's been, what she's seen, and everything from what makes her happy to what makes her sad. I just really love listening to her stories.",
       date: "2026-10-16",
       from: "love-her-talking"
+    },
+    {
+      id: "oct-17",
+      label: "Dinner on October 17th",
+      text: "On October 17th, 2026, we went out to eat together.",
+      date: "2026-10-17"
+    },
+    {
+      id: "oct-17-outfit",
+      label: "What she wore",
+      text: "She wore a white shirt, a black veil, and a super cute polka-dot bag.",
+      date: "2026-10-17",
+      from: "oct-17",
+      links: ["polka-dots"]
+    },
+    {
+      id: "oct-17-beautiful",
+      label: "Really beautiful",
+      text: "She was really beautiful.",
+      date: "2026-10-17",
+      from: "oct-17"
+    },
+    {
+      id: "first-sushi",
+      label: "Our first sushi",
+      text: "We ate sushi for the first time, and I really loved that moment.",
+      date: "2026-10-17",
+      from: "oct-17",
+      links: ["sushi"]
+    },
+    {
+      id: "mint-choco",
+      label: "Mint chocolate ice cream",
+      text: "We also bought some snacks before going home, and she likes mint chocolate! She bought choco mint ice cream, and in my opinion it tastes like Pepsodent, hahaha.",
+      date: "2026-10-17",
+      from: "oct-17",
+      links: ["chocolate"]
+    },
+    {
+      id: "walking-together",
+      label: "Walking together",
+      text: "We also walked from one place to another, and it was fun and comfortable.",
+      date: "2026-10-17",
+      from: "oct-17"
+    },
+    {
+      id: "so-happy",
+      label: "She said she was so happy",
+      text: "She said she was so happy, hahah.",
+      date: "2026-10-17",
+      from: "oct-17"
+    },
+    {
+      id: "our-time",
+      label: "Our time",
+      text: "I used to really like me time, but this time I think 'our time' is much better, hahahaha.",
+      date: "2026-10-17",
+      from: "changed-me",
+      links: ["oct-17"]
+    },
+    {
+      id: "slowly-selflessly",
+      label: "Slowly, not in a hurry",
+      text: "I am grateful, and I will always remember getting to know her, or each other, slowly, not in a hurry, and selflessly.",
+      date: "2026-10-17",
+      from: "oct-17",
+      links: ["unhurried"]
     }
   ]
 };
