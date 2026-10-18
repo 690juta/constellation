@@ -236,7 +236,7 @@
   }
 
   /* ---------- optional cover page (from "intro" in memories.js) ---------- */
-  var began = true, t0 = null, pendingShoot = false, shoot = [];
+  var began = true, t0 = null, pendingShoot = false, shoot = [], ambientAt = 0;
   var restartBtn = document.getElementById("restart");
 
   function showCover() {
@@ -426,19 +426,30 @@
   }
   function rgba(c, a) { return "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + a + ")"; }
 
-  function launchShooting(t) {
+  // one streak; dir -1 flies toward the lower left, +1 toward the lower right
+  function shootOne(t, delay, scale, dir, bright) {
     var base = Math.max(W, 700);
-    function one(delay, scale) {
-      var ang = (24 + Math.random() * 12) * Math.PI / 180;
-      shoot.push({
-        x: W * (0.6 + Math.random() * 0.3), y: H * (0.05 + Math.random() * 0.12),
-        dx: -Math.cos(ang), dy: Math.sin(ang),
-        v: base * (0.95 * scale), len: 150 * scale, w: 2.2 * scale, s: scale,
-        born: t + delay, life: 1.15 / scale * 0.9
-      });
-    }
-    one(0, 1);
-    one(520, 0.6);
+    var ang = (24 + Math.random() * 12) * Math.PI / 180;
+    shoot.push({
+      x: dir < 0 ? W * (0.45 + Math.random() * 0.5) : W * (0.05 + Math.random() * 0.5),
+      y: H * (0.04 + Math.random() * 0.2),
+      dx: dir * Math.cos(ang), dy: Math.sin(ang),
+      v: base * 0.95 * scale, len: 150 * scale, w: 2.2 * scale, s: scale, b: bright,
+      born: t + delay, life: 1.15 / scale * 0.9
+    });
+  }
+
+  // the pair that opens the sky
+  function launchShooting(t) {
+    shootOne(t, 0, 1, -1, 1);
+    shootOne(t, 520, 0.6, -1, 1);
+  }
+
+  // the occasional one that drifts by while she explores
+  function ambientShooting(t) {
+    var scale = 0.7 + Math.random() * 0.4, dir = Math.random() < 0.5 ? -1 : 1;
+    shootOne(t, 0, scale, dir, 0.8);
+    if (Math.random() < 0.25) shootOne(t, 450, scale * 0.6, dir, 0.6);
   }
 
   function drawShooting(t) {
@@ -448,7 +459,7 @@
       if (e < 0) continue;
       if (e > m.life) { shoot.splice(i, 1); continue; }
       var p = e / m.life;
-      var a = Math.min(p / 0.12, 1) * (1 - p);
+      var a = Math.min(p / 0.12, 1) * (1 - p) * m.b;
       var hx = m.x + m.dx * m.v * e, hy = m.y + m.dy * m.v * e;
       var tx = hx - m.dx * m.len, ty = hy - m.dy * m.len;
       var g = fctx.createLinearGradient(tx, ty, hx, hy);
@@ -470,6 +481,11 @@
     var el = -1e9;
     if (began) { if (t0 === null) t0 = t; el = t - t0; }
     if (pendingShoot && began) { pendingShoot = false; if (!reduce) launchShooting(t); }
+    if (!began) ambientAt = 0;
+    else if (!reduce) {
+      if (ambientAt === 0) ambientAt = t + 6500 + Math.random() * 4000;
+      else if (t >= ambientAt && !shoot.length) { ambientShooting(t); ambientAt = t + 7000 + Math.random() * 9000; }
+    }
     step = Math.min(260, 2400 / items.length);
 
     pan.x += (target.x - pan.x) * 0.15; pan.y += (target.y - pan.y) * 0.15;
