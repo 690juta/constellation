@@ -236,7 +236,7 @@
   }
 
   /* ---------- optional cover page (from "intro" in memories.js) ---------- */
-  var began = true, t0 = null;
+  var began = true, t0 = null, pendingShoot = false, shoot = [];
   var restartBtn = document.getElementById("restart");
 
   function showCover() {
@@ -293,7 +293,7 @@
       document.body.classList.remove("has-cover");
       world.removeAttribute("inert");
       restartBtn.hidden = false;
-      began = true; t0 = null;
+      began = true; t0 = null; pendingShoot = true;
       setTimeout(function () { if (cover.parentNode) cover.parentNode.removeChild(cover); }, 1200);
     });
     next.focus();
@@ -421,14 +421,55 @@
   function reveal(it, el) {
     if (!began) return 0;
     if (reduce) return 1;
-    var v = (el - 500 - it.idx * step) / 700;
+    var v = (el - 1000 - it.idx * step) / 700;
     return v < 0 ? 0 : v > 1 ? 1 : v;
   }
   function rgba(c, a) { return "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + a + ")"; }
 
+  function launchShooting(t) {
+    var base = Math.max(W, 700);
+    function one(delay, scale) {
+      var ang = (24 + Math.random() * 12) * Math.PI / 180;
+      shoot.push({
+        x: W * (0.6 + Math.random() * 0.3), y: H * (0.05 + Math.random() * 0.12),
+        dx: -Math.cos(ang), dy: Math.sin(ang),
+        v: base * (0.95 * scale), len: 150 * scale, w: 2.2 * scale, s: scale,
+        born: t + delay, life: 1.15 / scale * 0.9
+      });
+    }
+    one(0, 1);
+    one(520, 0.6);
+  }
+
+  function drawShooting(t) {
+    fctx.lineCap = "round";
+    for (var i = shoot.length - 1; i >= 0; i--) {
+      var m = shoot[i], e = (t - m.born) / 1000;
+      if (e < 0) continue;
+      if (e > m.life) { shoot.splice(i, 1); continue; }
+      var p = e / m.life;
+      var a = Math.min(p / 0.12, 1) * (1 - p);
+      var hx = m.x + m.dx * m.v * e, hy = m.y + m.dy * m.v * e;
+      var tx = hx - m.dx * m.len, ty = hy - m.dy * m.len;
+      var g = fctx.createLinearGradient(tx, ty, hx, hy);
+      g.addColorStop(0, "rgba(255,250,235,0)");
+      g.addColorStop(1, "rgba(255,250,235," + a.toFixed(3) + ")");
+      fctx.strokeStyle = g; fctx.lineWidth = m.w;
+      fctx.beginPath(); fctx.moveTo(tx, ty); fctx.lineTo(hx, hy); fctx.stroke();
+      var r = 12 * m.s;
+      var hg = fctx.createRadialGradient(hx, hy, 0, hx, hy, r);
+      hg.addColorStop(0, "rgba(255,250,235," + (0.9 * a).toFixed(3) + ")");
+      hg.addColorStop(1, "rgba(255,250,235,0)");
+      fctx.fillStyle = hg;
+      fctx.beginPath(); fctx.arc(hx, hy, r, 0, 6.2832); fctx.fill();
+    }
+    fctx.lineCap = "butt";
+  }
+
   function frame(t) {
     var el = -1e9;
     if (began) { if (t0 === null) t0 = t; el = t - t0; }
+    if (pendingShoot && began) { pendingShoot = false; if (!reduce) launchShooting(t); }
     step = Math.min(260, 2400 / items.length);
 
     pan.x += (target.x - pan.x) * 0.15; pan.y += (target.y - pan.y) * 0.15;
@@ -505,6 +546,8 @@
         fctx.beginPath(); fctx.arc(it.sx, it.sy, r + 8, 0, 6.2832); fctx.stroke();
       }
     });
+
+    if (shoot.length) drawShooting(t);
 
     requestAnimationFrame(frame);
   }
