@@ -1304,6 +1304,33 @@ window.MEMORIES = {
       date: "2026-10-17",
       from: "oct-17",
       links: ["unhurried"]
+    },
+    {
+      id: "choosing-her",
+      label: "When a choice involves her",
+      text: "I like it when something I'm about to choose involves her.",
+      date: "2026-10-18"
+    },
+    {
+      id: "no-cheating",
+      label: "No cheating, of any kind",
+      text: "She once said that she couldn't tolerate any form of cheating, whether 'micro' or 'macro.'",
+      date: "2026-10-18",
+      from: "straightforward"
+    },
+    {
+      id: "spoil-her",
+      label: "I love to spoil her",
+      text: "I forgot the first time, but I love being able to spoil her.",
+      date: "2026-10-18",
+      from: "love-languages"
+    },
+    {
+      id: "tomato-careful",
+      label: "Her tomato keychain",
+      text: "She said her tomato keychain almost fell off once, so she's being careful.",
+      date: "2026-10-18",
+      from: "tomato-keychain"
     }
   ]
 };
