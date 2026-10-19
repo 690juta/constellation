@@ -1331,6 +1331,34 @@ window.MEMORIES = {
       text: "She said her tomato keychain almost fell off once, so she's being careful.",
       date: "2026-10-18",
       from: "tomato-keychain"
+    },
+    {
+      id: "second-choice",
+      label: "Never a second choice",
+      text: "She doesn't like being used as a second choice.",
+      date: "2026-10-20",
+      from: "no-cheating"
+    },
+    {
+      id: "dislikes",
+      label: "What she can't stand",
+      text: "She also dislikes liars, people who are tone-deaf, people who take things too lightly, and being excluded.",
+      date: "2026-10-20",
+      from: "straightforward"
+    },
+    {
+      id: "diehard",
+      label: "A die-hard lover of me",
+      text: "She's a die-hard lover of me, hahaha.",
+      date: "2026-10-20",
+      from: "into-me"
+    },
+    {
+      id: "date-all-day",
+      label: "Her date partner",
+      text: "If she could date someone all day, she would definitely choose me as her date partner, because of my super cool charm, hahaha.",
+      date: "2026-10-20",
+      from: "into-me"
     }
   ]
 };
