@@ -1359,6 +1359,20 @@ window.MEMORIES = {
       text: "If she could date someone all day, she would definitely choose me as her date partner, because of my super cool charm, hahaha.",
       date: "2026-10-20",
       from: "into-me"
+    },
+    {
+      id: "cranberry",
+      label: "The diamond cranberry",
+      text: "She very rarely asks me for anything. Tonight (October 19th) she asked me to buy her something, and it turned out to be a bit hard to find, even though it was just a diamond cranberry, haha.",
+      date: "2026-10-19",
+      from: "spoil-her"
+    },
+    {
+      id: "relies-on-me",
+      label: "When she relies on me",
+      text: "I like it when she relies on me, even for the smallest things, or asks me for something.",
+      date: "2026-10-20",
+      from: "cranberry"
     }
   ]
 };
