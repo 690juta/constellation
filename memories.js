@@ -19,6 +19,11 @@
   line (in seconds) would instead make the page choose the speed itself. Reword it freely; delete
   the whole block if you ever want the sky to open straight away.
 
+  On phones, each group of stars folds into its first star (with a +number badge).
+  Tap it to open the group, tap it again, or tap "Collapse group", to fold it back.
+  Add  collapse: false,  next to "title" below to turn this off, or  collapse: true,
+  to also use it on bigger screens.
+
   The small line under the title is the "subtitle" below. {n} is replaced
   by the number of stars, so you can reword it however you like.
 
