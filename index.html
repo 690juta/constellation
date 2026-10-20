@@ -108,13 +108,14 @@
   header { transition: opacity 1.2s ease 0.4s; }
   body.has-cover header { opacity: 0; }
 
-  #restart {
+  #restart, #collapseBtn {
     min-height: 44px; margin: 0.3rem 0 0 -0.6rem; padding: 0 0.6rem;
     border: 0; border-radius: 999px; background: none; color: var(--dim);
     font: 400 0.85rem var(--sans); cursor: pointer; pointer-events: auto;
   }
-  #restart:hover { color: var(--ink); }
-  #restart:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  #restart:hover, #collapseBtn:hover { color: var(--ink); }
+  #restart:focus-visible, #collapseBtn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  #collapseBtn { margin-left: 0.4rem; }
 
   #cover {
     position: fixed; inset: 0; z-index: 6;
@@ -185,6 +186,7 @@
     <h1 id="title">Things I've noticed about you</h1>
     <p class="count" id="count"></p>
     <button id="restart" type="button" hidden>&larr; Back to start</button>
+    <button id="collapseBtn" type="button" hidden>Collapse group</button>
   </header>
 
   <button id="music" type="button" aria-pressed="false" aria-label="Play music">
@@ -238,6 +240,10 @@
   /* ---------- optional cover page (from "intro" in memories.js) ---------- */
   var began = true, t0 = null, pendingShoot = false, shoot = [], ambientAt = 0;
   var restartBtn = document.getElementById("restart");
+  var collapseBtn = document.getElementById("collapseBtn");
+  // on phones, each group of stars folds into its first star; tap to open it
+  var collapseMode = false, openRoot = null, Z = 1, Zt = 1;
+  var SPREAD = 1.5, EXPAND_ZOOM = 2.0;
 
   function showCover() {
     var intro = data.intro;
@@ -305,6 +311,7 @@
       select(null);
       hovered = null;
       pan.x = pan.y = target.x = target.y = 0;
+      resetGroups();
       showCover();
     });
   }
@@ -354,12 +361,25 @@
     placed.push(it);
   });
 
+  // a group = one starting star plus everything that grew from it
+  items.forEach(function (it) { it.root = it.parent ? it.parent.root : it; it.members = it.members || 0; });
+  items.forEach(function (it) { if (it.root !== it) it.root.members++; });
+  items.forEach(function (it) { if (it.root === it) { it.e = 1; it.eT = 1; } });
+
+  function resetGroups() {
+    openRoot = null; Z = Zt = 1;
+    items.forEach(function (it) { if (it.root === it) { it.e = it.eT = collapseMode ? 0 : 1; } });
+    collapseBtn.hidden = true;
+  }
+  function vis(it) { return collapseMode && it.root !== it ? it.root.e : 1; }
+
   var now = new Date();
   items.forEach(function (it) {
     var d = parseDate(it.date); it.d = d;
     it.fresh = d && (now - d) / 864e5 <= 7 && (now - d) >= -864e5;
     it.phase = (hash(it.id) % 628) / 100;
   });
+  items.forEach(function (it) { if (it.fresh) it.root.freshMember = true; });
 
   var latest = items[items.length - 1];
   countEl.textContent = (data.subtitle || "{n} things I've noticed so far").replace("{n}", items.length);
@@ -371,7 +391,15 @@
     b.type = "button"; b.className = "star";
     b.setAttribute("data-label", shortLabel(it));
     b.setAttribute("aria-label", shortLabel(it));
-    b.addEventListener("click", function (e) { e.stopPropagation(); select(it.id); });
+    b.addEventListener("click", function (e) {
+      e.stopPropagation();
+      if (collapseMode && it.root === it && it.members) {
+        if (openRoot === it) { if (selected === it) collapseGroup(); else select(it.id); }
+        else { expandGroup(it); select(it.id, true); }
+        return;
+      }
+      select(it.id);
+    });
     b.addEventListener("pointerenter", function () { hovered = it; });
     b.addEventListener("pointerleave", function () { if (hovered === it) hovered = null; });
     b.addEventListener("focus", function () { hovered = it; });
@@ -389,15 +417,19 @@
     [fg, bg].forEach(function (c) { c.width = W * dpr; c.height = H * dpr; });
     fctx.setTransform(dpr, 0, 0, dpr, 0, 0); bctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
+    var want = data.collapse === true || (data.collapse !== false && W <= 720);
+    if (want !== collapseMode) { collapseMode = want; resetGroups(); pan.x = pan.y = target.x = target.y = 0; }
+
     var minx = 1e9, maxx = -1e9, miny = 1e9, maxy = -1e9;
     items.forEach(function (it) {
+      if (collapseMode && it.root !== it) return;
       minx = Math.min(minx, it.pos.x); maxx = Math.max(maxx, it.pos.x);
       miny = Math.min(miny, it.pos.y); maxy = Math.max(maxy, it.pos.y);
     });
     var padX = Math.min(90, W * 0.14), top = 130, bottom = 120;
     var fitX = (W - 2 * padX) / Math.max(maxx - minx, 0.001);
     var fitY = (H - top - bottom) / Math.max(maxy - miny, 0.001);
-    S = Math.max(Math.min(fitX, fitY, 300), 110);
+    S = Math.max(Math.min(fitX, fitY, 300), collapseMode ? 60 : 110);
     cx = (minx + maxx) / 2; cy = (miny + maxy) / 2; midY = top + (H - top - bottom) / 2;
 
     bgStars = [];
@@ -405,16 +437,54 @@
     for (var i = 0; i < n; i++) bgStars.push({ x: r() * W, y: r() * H, s: r() * 1.1 + 0.3, p: r() * 6.28, a: r() * 0.5 + 0.15 });
   }
 
+  // where a star sits in the world: group members fan out from their first star when it opens
+  function dispPos(it) {
+    var r = it.root;
+    if (!collapseMode || r === it) return it.pos;
+    var k = r.e * SPREAD;
+    return { x: r.pos.x + (it.pos.x - r.pos.x) * k, y: r.pos.y + (it.pos.y - r.pos.y) * k };
+  }
+
   function project() {
     items.forEach(function (it) {
-      var sx = W / 2 + (it.pos.x - cx) * S + pan.x;
-      var sy = midY + (it.pos.y - cy) * S + pan.y;
+      var dp = dispPos(it);
+      var sx = W / 2 + (dp.x - cx) * S * Z + pan.x;
+      var sy = midY + (dp.y - cy) * S * Z + pan.y;
       if (sx !== it.sx || sy !== it.sy) {
         it.sx = sx; it.sy = sy;
         it.btn.style.transform = "translate(" + sx.toFixed(1) + "px," + sy.toFixed(1) + "px)";
       }
+      var hide = vis(it) < 0.05;
+      if (hide !== it.hid) { it.hid = hide; it.btn.style.display = hide ? "none" : ""; }
     });
   }
+
+  function groupCentre(root) {
+    var x = root.pos.x, y = root.pos.y, n = 1;
+    items.forEach(function (o) {
+      if (o.root === root && o !== root) {
+        x += root.pos.x + (o.pos.x - root.pos.x) * SPREAD;
+        y += root.pos.y + (o.pos.y - root.pos.y) * SPREAD; n++;
+      }
+    });
+    return { x: x / n, y: y / n };
+  }
+  function expandGroup(root) {
+    if (openRoot && openRoot !== root) openRoot.eT = 0;
+    openRoot = root; root.eT = 1; Zt = EXPAND_ZOOM;
+    var c = groupCentre(root);
+    target.x = -(c.x - cx) * S * Zt;
+    target.y = H * 0.36 - midY - (c.y - cy) * S * Zt;
+    collapseBtn.hidden = false;
+  }
+  function collapseGroup() {
+    if (!openRoot) return;
+    openRoot.eT = 0;
+    if (selected && selected.root === openRoot) select(null);
+    openRoot = null; Zt = 1; target.x = target.y = 0;
+    collapseBtn.hidden = true;
+  }
+  collapseBtn.addEventListener("click", collapseGroup);
 
   /* ---------- drawing ---------- */
   var step;
@@ -488,6 +558,13 @@
     }
     step = Math.min(260, 2400 / items.length);
 
+    if (collapseMode) items.forEach(function (it) {
+      if (it.root === it && it.members) {
+        it.e += (it.eT - it.e) * 0.14;
+        if (Math.abs(it.eT - it.e) < 0.005) it.e = it.eT;
+      }
+    });
+    Z += (Zt - Z) * 0.12; if (Math.abs(Zt - Z) < 0.002) Z = Zt;
     pan.x += (target.x - pan.x) * 0.15; pan.y += (target.y - pan.y) * 0.15;
     if (Math.abs(target.x - pan.x) < 0.05) pan.x = target.x;
     if (Math.abs(target.y - pan.y) < 0.05) pan.y = target.y;
@@ -505,8 +582,8 @@
     fctx.clearRect(0, 0, W, H);
     fctx.lineWidth = 1;
     items.forEach(function (it) {
-      var a = reveal(it, el);
-      if (a <= 0) return;
+      var a = reveal(it, el) * vis(it);
+      if (a <= 0.01) return;
       if (it.parent) {
         fctx.setLineDash([]);
         fctx.strokeStyle = rgba(it.rgb, 0.32 * a);
@@ -514,7 +591,7 @@
       }
       (it.links || []).forEach(function (id) {
         var o = byId[id]; if (!o || !o.pos) return;
-        var b = Math.min(a, reveal(o, el)); if (b <= 0) return;
+        var b = Math.min(a, reveal(o, el) * vis(o)); if (b <= 0.01) return;
         fctx.setLineDash([3, 5]);
         fctx.strokeStyle = rgba(it.rgb, 0.2 * b);
         fctx.beginPath(); fctx.moveTo(o.sx, o.sy); fctx.lineTo(it.sx, it.sy); fctx.stroke();
@@ -523,13 +600,14 @@
     fctx.setLineDash([]);
 
     items.forEach(function (it) {
-      var a = reveal(it, el);
-      if (a <= 0) return;
+      var a = reveal(it, el) * vis(it);
+      if (a <= 0.01) return;
       var on = it === selected, hot = it === hovered;
+      var folded = collapseMode && it.root === it && it.members ? 1 - it.e : 0;
       var r = 2.4 + Math.min(it.kids, 4) * 0.55;
       var tw = reduce ? 1 : 1 + 0.12 * Math.sin(t / 900 + it.phase);
       var boost = (on ? 1.5 : hot ? 1.25 : 1) * tw;
-      var gr = r * 7 * boost;
+      var gr = r * 7 * boost * (1 + 0.5 * folded);
 
       var g = fctx.createRadialGradient(it.sx, it.sy, 0, it.sx, it.sy, gr);
       g.addColorStop(0, rgba(it.rgb, 0.55 * a));
@@ -553,11 +631,19 @@
         fctx.strokeStyle = rgba(it.rgb, 0.8);
         fctx.beginPath(); fctx.arc(it.sx, it.sy, r + 7, 0, 6.2832); fctx.stroke();
       }
-      if (it.fresh && !reduce) {
+      if (folded > 0.02) {
+        fctx.strokeStyle = rgba(it.rgb, 0.55 * folded * a);
+        fctx.beginPath(); fctx.arc(it.sx, it.sy, r + 9, 0, 6.2832); fctx.stroke();
+        fctx.fillStyle = "rgba(245,238,220," + (0.85 * folded * a).toFixed(3) + ")";
+        fctx.font = "11px Figtree, system-ui, sans-serif"; fctx.textAlign = "center";
+        fctx.fillText("+" + it.members, it.sx, it.sy + r + 24);
+      }
+      var isFresh = it.fresh || (folded > 0.02 && it.freshMember);
+      if (isFresh && !reduce) {
         var ph = (t / 1800 + it.phase) % 1;
         fctx.strokeStyle = rgba(it.rgb, 0.6 * (1 - ph) * a);
         fctx.beginPath(); fctx.arc(it.sx, it.sy, r + 4 + ph * 16, 0, 6.2832); fctx.stroke();
-      } else if (it.fresh) {
+      } else if (isFresh) {
         fctx.strokeStyle = rgba(it.rgb, 0.5);
         fctx.beginPath(); fctx.arc(it.sx, it.sy, r + 8, 0, 6.2832); fctx.stroke();
       }
@@ -586,8 +672,9 @@
     cardRel.appendChild(row);
   }
 
-  function select(id) {
+  function select(id, skipPan) {
     var it = id ? byId[id] : null;
+    if (it && collapseMode && it.root.members && openRoot !== it.root) { expandGroup(it.root); skipPan = true; }
     selected = it;
     items.forEach(function (o) { o.btn.classList.toggle("sel", o === it); });
     if (!it) { card.classList.remove("open"); return; }
@@ -605,6 +692,7 @@
     card.classList.add("open");
 
     // keep the chosen star visible above the card
+    if (skipPan) return;
     var cardH = card.offsetHeight, limit = H - cardH - 70;
     if (it.sy > limit) target.y = pan.y - (it.sy - limit);
     else if (it.sy < 110) target.y = pan.y + (110 - it.sy);
