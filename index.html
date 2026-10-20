@@ -243,7 +243,7 @@
   var collapseBtn = document.getElementById("collapseBtn");
   // on phones, each group of stars folds into its first star; tap to open it
   var collapseMode = false, openRoot = null, Z = 1, Zt = 1;
-  var SPREAD = 1.5, EXPAND_ZOOM = 2.0;
+  var SPREAD = 1.5, EXPAND_ZOOM = 1.8;
 
   function showCover() {
     var intro = data.intro;
@@ -366,12 +366,16 @@
   items.forEach(function (it) { if (it.root !== it) it.root.members++; });
   items.forEach(function (it) { if (it.root === it) { it.e = 1; it.eT = 1; } });
 
+  var rootList = items.filter(function (it) { return it.root === it; });
+
   function resetGroups() {
     openRoot = null; Z = Zt = 1;
     items.forEach(function (it) { if (it.root === it) { it.e = it.eT = collapseMode ? 0 : 1; } });
     collapseBtn.hidden = true;
   }
   function vis(it) { return collapseMode && it.root !== it ? it.root.e : 1; }
+  // while a group is open, the other groups sink into the background
+  function shade(it) { return vis(it) * (collapseMode && it.root !== openRoot ? 1 - 0.78 * Om : 1); }
 
   var now = new Date();
   items.forEach(function (it) {
@@ -408,9 +412,26 @@
   });
 
   /* ---------- screen mapping ---------- */
-  var W, H, dpr, S, cx, cy, midY;
+  var W, H, dpr, S, cx, cy, midY, SY = 1, Om = 0;
   var pan = { x: 0, y: 0 }, target = { x: 0, y: 0 };
   var bgStars = [];
+
+  function spreadRoots(dmin) {
+    for (var iter = 0; iter < 160; iter++) {
+      var moved = false;
+      for (var i = 0; i < rootList.length; i++) {
+        for (var j = i + 1; j < rootList.length; j++) {
+          var a = rootList[i], b = rootList[j];
+          var dx = b.rx - a.rx, dy = b.ry - a.ry, d = Math.hypot(dx, dy);
+          if (d >= dmin) continue;
+          if (d < 1e-6) { dx = 0.001 * (j - i); dy = 0.001; d = Math.hypot(dx, dy); }
+          var push = (dmin - d) / 2 * 0.6, ux = dx / d, uy = dy / d;
+          a.rx -= ux * push; a.ry -= uy * push; b.rx += ux * push; b.ry += uy * push; moved = true;
+        }
+      }
+      if (!moved) break;
+    }
+  }
 
   function layout() {
     W = window.innerWidth; H = window.innerHeight; dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -420,17 +441,38 @@
     var want = data.collapse === true || (data.collapse !== false && W <= 720);
     if (want !== collapseMode) { collapseMode = want; resetGroups(); pan.x = pan.y = target.x = target.y = 0; }
 
-    var minx = 1e9, maxx = -1e9, miny = 1e9, maxy = -1e9;
-    items.forEach(function (it) {
-      if (collapseMode && it.root !== it) return;
-      minx = Math.min(minx, it.pos.x); maxx = Math.max(maxx, it.pos.x);
-      miny = Math.min(miny, it.pos.y); maxy = Math.max(maxy, it.pos.y);
-    });
-    var padX = Math.min(90, W * 0.14), top = 130, bottom = 120;
-    var fitX = (W - 2 * padX) / Math.max(maxx - minx, 0.001);
-    var fitY = (H - top - bottom) / Math.max(maxy - miny, 0.001);
-    S = Math.max(Math.min(fitX, fitY, 300), collapseMode ? 60 : 110);
-    cx = (minx + maxx) / 2; cy = (miny + maxy) / 2; midY = top + (H - top - bottom) / 2;
+    var padX = collapseMode ? Math.min(34, W * 0.1) : Math.min(90, W * 0.14), top = 130, bottom = 120;
+    var availW = W - 2 * padX, availH = H - top - bottom;
+    var minx, maxx, miny, maxy;
+    function bounds(list, fx, fy) {
+      minx = 1e9; maxx = -1e9; miny = 1e9; maxy = -1e9;
+      list.forEach(function (it) {
+        var x = fx(it), y = fy(it);
+        minx = Math.min(minx, x); maxx = Math.max(maxx, x);
+        miny = Math.min(miny, y); maxy = Math.max(maxy, y);
+      });
+    }
+    var px = function (it) { return it.pos.x; }, py = function (it) { return it.pos.y; };
+    var gx = function (it) { return it.rx; }, gy = function (it) { return it.ry; };
+    if (collapseMode) {
+      // folded groups on a tall phone screen: stretch the sky downward, then nudge
+      // overlapping groups apart so every one is easy to tap
+      bounds(rootList, px, py);
+      SY = Math.max(1, Math.min(2.6, (availH / availW) * (Math.max(maxx - minx, 0.001) / Math.max(maxy - miny, 0.001))));
+      rootList.forEach(function (it) { it.rx = it.pos.x; it.ry = it.pos.y * SY; });
+      for (var pass = 0; pass < 3; pass++) {
+        bounds(rootList, gx, gy);
+        var s0 = Math.max(Math.min(availW / Math.max(maxx - minx, 0.001), availH / Math.max(maxy - miny, 0.001), 300), 30);
+        spreadRoots(46 / s0);
+      }
+      bounds(rootList, gx, gy);
+    } else {
+      SY = 1;
+      bounds(items, px, py);
+    }
+    var bw = Math.max(maxx - minx, 0.001), bh = Math.max(maxy - miny, 0.001);
+    S = Math.max(Math.min(availW / bw, availH / bh, 300), collapseMode ? 30 : 110);
+    cx = (minx + maxx) / 2; cy = (miny + maxy) / 2; midY = top + availH / 2;
 
     bgStars = [];
     var r = rng(7), n = Math.round(W * H / 7000);
@@ -440,9 +482,10 @@
   // where a star sits in the world: group members fan out from their first star when it opens
   function dispPos(it) {
     var r = it.root;
-    if (!collapseMode || r === it) return it.pos;
+    if (!collapseMode) return it.pos;
+    if (r === it) return { x: r.rx, y: r.ry };
     var k = r.e * SPREAD;
-    return { x: r.pos.x + (it.pos.x - r.pos.x) * k, y: r.pos.y + (it.pos.y - r.pos.y) * k };
+    return { x: r.rx + (it.pos.x - r.pos.x) * k, y: r.ry + (it.pos.y - r.pos.y) * k };
   }
 
   function project() {
@@ -460,11 +503,11 @@
   }
 
   function groupCentre(root) {
-    var x = root.pos.x, y = root.pos.y, n = 1;
+    var x = root.rx, y = root.ry, n = 1;
     items.forEach(function (o) {
       if (o.root === root && o !== root) {
-        x += root.pos.x + (o.pos.x - root.pos.x) * SPREAD;
-        y += root.pos.y + (o.pos.y - root.pos.y) * SPREAD; n++;
+        x += root.rx + (o.pos.x - root.pos.x) * SPREAD;
+        y += root.ry + (o.pos.y - root.pos.y) * SPREAD; n++;
       }
     });
     return { x: x / n, y: y / n };
@@ -565,6 +608,7 @@
       }
     });
     Z += (Zt - Z) * 0.12; if (Math.abs(Zt - Z) < 0.002) Z = Zt;
+    Om += ((collapseMode && openRoot ? 1 : 0) - Om) * 0.12; if (Om < 0.003) Om = 0;
     pan.x += (target.x - pan.x) * 0.15; pan.y += (target.y - pan.y) * 0.15;
     if (Math.abs(target.x - pan.x) < 0.05) pan.x = target.x;
     if (Math.abs(target.y - pan.y) < 0.05) pan.y = target.y;
@@ -582,7 +626,7 @@
     fctx.clearRect(0, 0, W, H);
     fctx.lineWidth = 1;
     items.forEach(function (it) {
-      var a = reveal(it, el) * vis(it);
+      var a = reveal(it, el) * shade(it);
       if (a <= 0.01) return;
       if (it.parent) {
         fctx.setLineDash([]);
@@ -591,7 +635,7 @@
       }
       (it.links || []).forEach(function (id) {
         var o = byId[id]; if (!o || !o.pos) return;
-        var b = Math.min(a, reveal(o, el) * vis(o)); if (b <= 0.01) return;
+        var b = Math.min(a, reveal(o, el) * shade(o)); if (b <= 0.01) return;
         fctx.setLineDash([3, 5]);
         fctx.strokeStyle = rgba(it.rgb, 0.2 * b);
         fctx.beginPath(); fctx.moveTo(o.sx, o.sy); fctx.lineTo(it.sx, it.sy); fctx.stroke();
@@ -600,14 +644,15 @@
     fctx.setLineDash([]);
 
     items.forEach(function (it) {
-      var a = reveal(it, el) * vis(it);
+      var a = reveal(it, el) * shade(it);
       if (a <= 0.01) return;
       var on = it === selected, hot = it === hovered;
       var folded = collapseMode && it.root === it && it.members ? 1 - it.e : 0;
       var r = 2.4 + Math.min(it.kids, 4) * 0.55;
       var tw = reduce ? 1 : 1 + 0.12 * Math.sin(t / 900 + it.phase);
       var boost = (on ? 1.5 : hot ? 1.25 : 1) * tw;
-      var gr = r * 7 * boost * (1 + 0.5 * folded);
+      var gr = r * 7 * boost;
+      if (collapseMode) gr = Math.min(gr, 26);
 
       var g = fctx.createRadialGradient(it.sx, it.sy, 0, it.sx, it.sy, gr);
       g.addColorStop(0, rgba(it.rgb, 0.55 * a));
@@ -635,8 +680,8 @@
         fctx.strokeStyle = rgba(it.rgb, 0.55 * folded * a);
         fctx.beginPath(); fctx.arc(it.sx, it.sy, r + 9, 0, 6.2832); fctx.stroke();
         fctx.fillStyle = "rgba(245,238,220," + (0.85 * folded * a).toFixed(3) + ")";
-        fctx.font = "11px Figtree, system-ui, sans-serif"; fctx.textAlign = "center";
-        fctx.fillText("+" + it.members, it.sx, it.sy + r + 24);
+        fctx.font = "10px Figtree, system-ui, sans-serif"; fctx.textAlign = "center";
+        fctx.fillText("+" + it.members, it.sx, it.sy + r + 22);
       }
       var isFresh = it.fresh || (folded > 0.02 && it.freshMember);
       if (isFresh && !reduce) {
