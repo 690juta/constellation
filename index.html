@@ -677,8 +677,41 @@
         fctx.beginPath(); fctx.arc(it.sx, it.sy, r + 7, 0, 6.2832); fctx.stroke();
       }
       if (folded > 0.02) {
-        fctx.strokeStyle = rgba(it.rgb, 0.55 * folded * a);
-        fctx.beginPath(); fctx.arc(it.sx, it.sy, r + 9, 0, 6.2832); fctx.stroke();
+        var ringR = r + 9, fa = folded * a;
+        // faint full ring
+        fctx.lineWidth = 1;
+        fctx.strokeStyle = rgba(it.rgb, 0.4 * fa);
+        fctx.beginPath(); fctx.arc(it.sx, it.sy, ringR, 0, 6.2832); fctx.stroke();
+
+        // two bright lights gliding around the ring, each trailing a short comet tail
+        var rot = reduce ? it.phase : t / 2600 + it.phase;
+        fctx.lineCap = "round";
+        for (var h = 0; h < 2; h++) {
+          var head = rot + h * Math.PI;
+          for (var q = 0; q < 10; q++) {
+            var a0 = head - q * 0.11, a1 = head - (q + 1) * 0.11;
+            fctx.strokeStyle = rgba(it.rgb, (0.85 - q * 0.08) * fa);
+            fctx.lineWidth = 1.8 - q * 0.1;
+            fctx.beginPath(); fctx.arc(it.sx, it.sy, ringR, a1, a0); fctx.stroke();
+          }
+          var hx = it.sx + Math.cos(head) * ringR, hy = it.sy + Math.sin(head) * ringR;
+          var hg = fctx.createRadialGradient(hx, hy, 0, hx, hy, 7);
+          hg.addColorStop(0, "rgba(255,250,235," + (0.95 * fa).toFixed(3) + ")");
+          hg.addColorStop(1, "rgba(255,250,235,0)");
+          fctx.fillStyle = hg;
+          fctx.beginPath(); fctx.arc(hx, hy, 7, 0, 6.2832); fctx.fill();
+        }
+
+        // soft light streaks out to the left and right, like a lens glint
+        for (var sd = -1; sd <= 1; sd += 2) {
+          var x0 = it.sx + sd * (ringR + 2), x1 = it.sx + sd * (ringR + 20);
+          var sg = fctx.createLinearGradient(x0, it.sy, x1, it.sy);
+          sg.addColorStop(0, "rgba(255,250,235," + (0.5 * fa).toFixed(3) + ")");
+          sg.addColorStop(1, "rgba(255,250,235,0)");
+          fctx.strokeStyle = sg; fctx.lineWidth = 1.2;
+          fctx.beginPath(); fctx.moveTo(x0, it.sy); fctx.lineTo(x1, it.sy); fctx.stroke();
+        }
+        fctx.lineCap = "butt"; fctx.lineWidth = 1;
         fctx.fillStyle = "rgba(245,238,220," + (0.85 * folded * a).toFixed(3) + ")";
         fctx.font = "10px Figtree, system-ui, sans-serif"; fctx.textAlign = "center";
         fctx.fillText("+" + it.members, it.sx, it.sy + r + 22);
