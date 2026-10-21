@@ -1378,6 +1378,55 @@ window.MEMORIES = {
       text: "I like it when she relies on me, even for the smallest things, or asks me for something.",
       date: "2026-10-20",
       from: "cranberry"
+    },
+    {
+      id: "speaks-up",
+      label: "First to speak up",
+      text: "She is often the first to speak up when something isn't right.",
+      date: "2026-10-21",
+      from: "straightforward"
+    },
+    {
+      id: "no-spotlight",
+      label: "Not for the spotlight",
+      text: "She may not seek the spotlight, but she never shies away from speaking up.",
+      date: "2026-10-21",
+      from: "speaks-up"
+    },
+    {
+      id: "proud-speaks",
+      label: "Proud of her like that",
+      text: "And I'm really proud of her like that.",
+      date: "2026-10-21",
+      from: "no-spotlight",
+      links: ["proud"]
+    },
+    {
+      id: "gentle-to-me",
+      label: "Gentle with me",
+      text: "She is sometimes gentle when she talks to me.",
+      date: "2026-10-21",
+      from: "tender"
+    },
+    {
+      id: "her-thoughts",
+      label: "Her thoughts",
+      text: "I really like her thoughts, and the way she looks at the people around her.",
+      date: "2026-10-21",
+      from: "smart"
+    },
+    {
+      id: "cool-head",
+      label: "The cool inside her head",
+      text: "Maybe without her realizing it, or needing any effort, just by talking a little she already shows how cool the contents of her head are.",
+      date: "2026-10-21",
+      from: "her-thoughts"
+    },
+    {
+      id: "fun-together",
+      label: "Fun to play with",
+      text: "She's also really fun when we play together.",
+      date: "2026-10-21"
     }
   ]
 };
