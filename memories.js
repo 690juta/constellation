@@ -1427,6 +1427,27 @@ window.MEMORIES = {
       label: "Fun to play with",
       text: "She's also really fun when we play together.",
       date: "2026-10-21"
+    },
+    {
+      id: "kecelakaan-kecil",
+      label: "Kecelakaan kecil di motor",
+      text: "Pertama kali ada 'kecelakaan kecil' waktu kita berdua pulang dari kantor: kaki dia nyenggol orang karena gua terlalu mepet ke kiri waktu bawa motor. Gua belum sempat nanyain keadaan kakinya sampai sekarang, kayaknya. Karena udah kehilangan momen buat nanya, besoknya setiap kali motor mepet sama orang atau apa pun, gua cek dulu kakinya apakah terlalu mepet atau engga, supaya dia gak kena lagi.",
+      date: "2026-10-21",
+      links: ["looking-after"]
+    },
+    {
+      id: "kepleset",
+      label: "Kepleset di depan rumah",
+      text: "Kejadian lagi waktu pulang kerja: dia turun dari motor, terus tiba-tiba kepleset, untung aja gak jatuh. Itu terjadi 2 kali di tempat yang sama, di depan rumahnya. Pas gua liat, tempat itu emang kayaknya agak licin karena sering ada aliran air, jadi wajar kalau dia kepleset. Oh, yang kedua kali kayaknya karena kakinya keserimpet, kalau gak salah. Besoknya gua majuin lagi posisi motor dan berhentinya pas waktu jemput dan anter dia pulang, supaya dia gak kepleset lagi.",
+      date: "2026-10-21",
+      from: "kecelakaan-kecil"
+    },
+    {
+      id: "indecisive",
+      label: "Dia indecisive",
+      text: "Dia tuh bener-bener indecisive. Pertama kali dia ngakuin itu waktu pertama kali kita ke AEON berdua: dia bilang dia indecisive, jadi ngikut aja ke mana. Tapi kalau dia gak mau, ya dia bilang gak mau, dan dari situ gua masih percaya sedikit. Ternyata hal-hal kecil pun dia indecisive juga, tapi lucu-lucu aja sih.",
+      date: "2026-10-21",
+      from: "straightforward"
     }
   ]
 };
