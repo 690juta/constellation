@@ -27,6 +27,9 @@
   The small line under the title is the "subtitle" below. {n} is replaced
   by the number of stars, so you can reword it however you like.
 
+  The LAST star in the list is treated as the newest: it gets a golden halo.
+  Stars from the last 4 days glow brighter, fading as they age.
+
   Stars noticed within the last 7 days gently pulse, so she can
   spot what's new. Keep the order of the list = the order you noticed things.
 */
