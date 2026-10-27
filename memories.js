@@ -1448,6 +1448,54 @@ window.MEMORIES = {
       text: "Dia tuh bener-bener indecisive. Pertama kali dia ngakuin itu waktu pertama kali kita ke AEON berdua: dia bilang dia indecisive, jadi ngikut aja ke mana. Tapi kalau dia gak mau, ya dia bilang gak mau, dan dari situ gua masih percaya sedikit. Ternyata hal-hal kecil pun dia indecisive juga, tapi lucu-lucu aja sih.",
       date: "2026-10-21",
       from: "straightforward"
+    },
+    {
+      id: "martabak",
+      label: "Martabak coklat",
+      text: "Dia suka martabak coklat.",
+      date: "2026-10-25",
+      from: "chocolate"
+    },
+    {
+      id: "choco-mint-eskrim",
+      label: "Choco mint paling enak di eskrim",
+      text: "Dia juga suka rasa choco mint, tapi katanya yang paling enak itu di eskrim.",
+      date: "2026-10-25",
+      from: "mint-choco"
+    },
+    {
+      id: "nasi-goreng-malam",
+      label: "Nasi goreng tengah malam",
+      text: "Gua pernah nyamperin dia malem-malem buat makan nasi goreng, cuma karena laper... dan kangen berat, hahaha. Gak usah geer lu.",
+      date: "2026-10-25",
+      from: "miss-her"
+    },
+    {
+      id: "green-forest",
+      label: "Green forest",
+      text: "Dia bilang gua itu green forest, tapi apalah forest kalau gak ada beautiful flowers-nya (dia).",
+      date: "2026-10-25",
+      from: "colors"
+    },
+    {
+      id: "ngomong-kayak-marah",
+      label: "Cara dia ngomong",
+      text: "Cara dia ngomong kadang kayak orang marah-marah. Nyebelin dikit, tapi lucu sih.",
+      date: "2026-10-25",
+      from: "angry-cute"
+    },
+    {
+      id: "cantik-banget",
+      label: "Cantik banget",
+      text: "Beberapa hari terakhir dia cantik banget banget banget, mungkin karena deket sama gua kali.",
+      date: "2026-10-25",
+      from: "stunning"
+    },
+    {
+      id: "bete-libur",
+      label: "Jadwal libur November",
+      text: "Dia bete karena jadwal libur Novembernya busuk, hahaha.",
+      date: "2026-10-25"
     }
   ]
 };
