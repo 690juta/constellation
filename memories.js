@@ -27,8 +27,9 @@
   The small line under the title is the "subtitle" below. {n} is replaced
   by the number of stars, so you can reword it however you like.
 
-  The LAST star in the list is treated as the newest: it gets a golden halo.
-  Stars from the last 4 days glow brighter, fading as they age.
+  Every star with the NEWEST date in the list gets a golden halo, and the rest of
+  its family glows brighter too. Stars from the last 4 days glow warmer, fading as
+  they age. So give each batch of new stars the same date (today's).
 
   Stars noticed within the last 7 days gently pulse, so she can
   spot what's new. Keep the order of the list = the order you noticed things.
