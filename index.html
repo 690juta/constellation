@@ -394,6 +394,10 @@
     var age = it.d ? (now - it.d) / 864e5 : 99;
     it.recent = age < 0 ? 1 : Math.max(0, 1 - age / 4);
   });
+  items.forEach(function (it) { it.root.fr = Math.max(it.root.fr || 0, it.recent); });
+  items.forEach(function (it) {
+    it.lit = Math.max(it.isNewest ? 1 : it.recent, it.root.famNewest ? 0.85 : 0, 0.6 * it.root.fr);
+  });
 
   var latest = items[items.length - 1];
   countEl.textContent = (data.subtitle || "{n} things I've noticed so far").replace("{n}", items.length);
@@ -640,14 +644,14 @@
       if (a <= 0.01) return;
       if (it.parent) {
         fctx.setLineDash([]);
-        fctx.strokeStyle = rgba(it.rgb, (it.root.famNewest ? 0.55 : 0.32) * a);
+        fctx.strokeStyle = rgba(it.rgb, (0.18 + 0.37 * Math.max(it.lit, it.parent.lit)) * a);
         fctx.beginPath(); fctx.moveTo(it.parent.sx, it.parent.sy); fctx.lineTo(it.sx, it.sy); fctx.stroke();
       }
       (it.links || []).forEach(function (id) {
         var o = byId[id]; if (!o || !o.pos) return;
         var b = Math.min(a, reveal(o, el) * shade(o)); if (b <= 0.01) return;
         fctx.setLineDash([3, 5]);
-        fctx.strokeStyle = rgba(it.rgb, 0.2 * b);
+        fctx.strokeStyle = rgba(it.rgb, 0.15 * b);
         fctx.beginPath(); fctx.moveTo(o.sx, o.sy); fctx.lineTo(it.sx, it.sy); fctx.stroke();
       });
     });
@@ -660,14 +664,15 @@
       var folded = collapseMode && it.root === it && it.members ? 1 - it.e : 0;
       var beacon = it.isNewest ? 1 : (collapseMode && it.root === it && it.famNewest && folded > 0.02 ? folded : 0);
       var fam = it.root.famNewest && !it.isNewest && beacon <= 0.02 ? 1 : 0;
+      var dk = (on || hot) ? 1 : 0.5 + 0.5 * it.lit;   // older stars rest at about half their light
       var r = 2.4 + Math.min(it.kids, 4) * 0.55;
       var tw = reduce ? 1 : 1 + 0.12 * Math.sin(t / 900 + it.phase);
       var boost = (on ? 1.5 : hot ? 1.25 : 1) * tw;
-      var gr = r * 7 * boost;
+      var gr = r * 7 * boost * (0.82 + 0.18 * (on || hot ? 1 : it.lit));
       if (collapseMode) gr = Math.min(gr, 26);
 
       var g = fctx.createRadialGradient(it.sx, it.sy, 0, it.sx, it.sy, gr);
-      g.addColorStop(0, rgba(it.rgb, 0.55 * a));
+      g.addColorStop(0, rgba(it.rgb, 0.55 * a * dk));
       g.addColorStop(1, rgba(it.rgb, 0));
       fctx.fillStyle = g;
       fctx.beginPath(); fctx.arc(it.sx, it.sy, gr, 0, 6.2832); fctx.fill();
@@ -709,7 +714,7 @@
       }
 
       if (it.kids >= 2) {
-        fctx.strokeStyle = rgba(it.rgb, 0.5 * a);
+        fctx.strokeStyle = rgba(it.rgb, 0.5 * a * dk);
         var L = r * 3.4;
         fctx.beginPath();
         fctx.moveTo(it.sx - L, it.sy); fctx.lineTo(it.sx + L, it.sy);
@@ -717,7 +722,7 @@
         fctx.stroke();
       }
 
-      fctx.fillStyle = "rgba(255,250,235," + (0.95 * a).toFixed(3) + ")";
+      fctx.fillStyle = "rgba(255,250,235," + ((0.6 + 0.35 * dk) * a).toFixed(3) + ")";
       fctx.beginPath(); fctx.arc(it.sx, it.sy, r * (on ? 1.3 : 1) * (1 + 0.35 * beacon), 0, 6.2832); fctx.fill();
 
       if (on) {
@@ -725,7 +730,7 @@
         fctx.beginPath(); fctx.arc(it.sx, it.sy, r + 7, 0, 6.2832); fctx.stroke();
       }
       if (folded > 0.02) {
-        var ringR = r + 9, fa = folded * a;
+        var ringR = r + 9, fa = folded * a * dk;
         // faint full ring
         fctx.lineWidth = 1;
         fctx.strokeStyle = rgba(it.rgb, 0.4 * fa);
