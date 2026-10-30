@@ -1500,6 +1500,77 @@ window.MEMORIES = {
       label: "Jadwal libur November",
       text: "Dia bete karena jadwal libur Novembernya busuk, hahaha.",
       date: "2026-10-25"
+    },
+    {
+      id: "staycation",
+      label: "Staycation pertama",
+      text: "Pertama kali tau sedikit tentang dia itu waktu staycation pertama kali. Waktu itu belum terlalu deket, tapi mulai tertarik sedikit. Tapi agak sedih... karena lagi sesi tanya-tanya, terus bagian dia yang jawab, dia bilang 'belum dirayakan'. Gua gak langsung berusaha mengartikan itu, tapi gua inget-inget terus beberapa hari kemudian.",
+      date: "2026-10-27",
+      from: "eye-on-her",
+      links: ["birthday"]
+    },
+    {
+      id: "pengen-deket",
+      label: "Pengen deket dari dulu",
+      text: "Dari dulu tuh sebenernya gua pengen deket, cuma emang lebih hati-hati karena dia susah banget ditebak, dan sebenernya gua tuh respect aja.",
+      date: "2026-10-27",
+      from: "staycation"
+    },
+    {
+      id: "kenapa-gap",
+      label: "Kenapa ya, ada gap",
+      text: "Dulu mikirnya 'kenapa ya', kenapa kayak ada gap kalau ke gua. Cuma sekarang gua berterima kasih karena itu yang bikin gua penasaran, hahaha.",
+      date: "2026-10-27",
+      from: "pengen-deket"
+    },
+    {
+      id: "lembut",
+      label: "Lembut banget",
+      text: "Dia lembut banget orangnya, dan hatinya.",
+      date: "2026-10-27",
+      from: "tender"
+    },
+    {
+      id: "sederhana",
+      label: "Sederhana banget",
+      text: "Dia juga sederhana banget, dalam hal apa pun.",
+      date: "2026-10-27",
+      from: "tender"
+    },
+    {
+      id: "bangga",
+      label: "Bangga banget sama dia",
+      text: "Gua tuh bangga banget sama dia, meskipun pasti dia sekarang mikir apa yang dibanggain. Dari dulu, sekarang, dan selamanya.",
+      date: "2026-10-27",
+      from: "proud"
+    },
+    {
+      id: "penyayang",
+      label: "Penyayang banget",
+      text: "Dan dia itu penyayang banget, hehehe.",
+      date: "2026-10-27",
+      from: "big-heart"
+    },
+    {
+      id: "manja",
+      label: "Ternyata dia manja",
+      text: "Tapi ternyata dia juga manja, hahaha, dan gua suka banget.",
+      date: "2026-10-27",
+      from: "penyayang"
+    },
+    {
+      id: "jatuh-olahraga",
+      label: "Jatuh waktu olahraga",
+      text: "Dia pernah jatuh waktu olahraga di rumah sampai gak masuk kerja.",
+      date: "2026-10-27",
+      from: "kepleset"
+    },
+    {
+      id: "dunia-runtuh",
+      label: "Kalau dunianya runtuh",
+      text: "Dan gua pengen dia tau, even if her world falls apart, or whatever happens, gua akan bikin dia merasa layak buat dicintai dan dapetin semua kebaikan yang ada di dunia ini.",
+      date: "2026-10-27",
+      from: "unconditional"
     }
   ]
 };
