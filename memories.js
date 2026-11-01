@@ -1571,6 +1571,76 @@ window.MEMORIES = {
       text: "Dan gua pengen dia tau, even if her world falls apart, or whatever happens, gua akan bikin dia merasa layak buat dicintai dan dapetin semua kebaikan yang ada di dunia ini.",
       date: "2026-10-27",
       from: "unconditional"
+    },
+    {
+      id: "gak-dibentak",
+      label: "Gak suka dibentak",
+      text: "Dia gak suka dibentak, hehe. Itu berarti dia juga gak suka dikasarin.",
+      date: "2026-10-28",
+      from: "dislikes"
+    },
+    {
+      id: "bikin-nyaman",
+      label: "Bikin orang nyaman",
+      text: "Dia tuh kayak punya sesuatu di dalam dirinya yang bikin orang nyaman buat deket sama dia. Jadi gak heran kalau temen-temennya suka cerita sama dia, pergi bareng, atau apa aja.",
+      date: "2026-10-28",
+      from: "friends"
+    },
+    {
+      id: "suka-dikejar",
+      label: "Ternyata suka dikejar",
+      text: "Dia suka dikejar, ternyata, hahahaha.",
+      date: "2026-10-28",
+      from: "hard-to-get"
+    },
+    {
+      id: "tipe-tinggi",
+      label: "Tipe dia: yang tinggi",
+      text: "Waktu di nako, gua pernah nanya ke temennya, Nida, 'tipe' dia itu kayak gimana, HAHAHA. Terus gua ngerasa sombong aja, karena dia suka sama orang yang 'tinggi', dan gua kan TINGGI ya. Meskipun dikit lagi sampe 180, tapi dibanding yang ada sama temen-temennya, boleh lah diadu, ez.",
+      date: "2026-10-28",
+      from: "work-friends"
+    },
+    {
+      id: "serba-bisa",
+      label: "Suka yang serba bisa",
+      text: "Dia kayaknya juga suka sama orang yang serba bisa. Dan sepertinya sih gua juga serba bisa, kayaknya ya.",
+      date: "2026-10-28",
+      from: "tipe-tinggi"
+    },
+    {
+      id: "suka-pinter",
+      label: "Suka yang pinter",
+      text: "Dia suka sama orang yang pinter juga, soalnya kalau enggak, nanti dikatain 'okn' sama dia.",
+      date: "2026-10-28",
+      from: "serba-bisa"
+    },
+    {
+      id: "berani-di-wa",
+      label: "Berani di WA aja",
+      text: "Dia sering berani ngomong di WA aja, pas ketemu langsung gak ngomong apa-apa. Tapi gapapa sih.",
+      date: "2026-10-28",
+      from: "first-move"
+    },
+    {
+      id: "listener",
+      label: "Listener buat gua doang",
+      text: "Dia suka jadi listener buat orang-orang, dan gua cuma suka jadi listener buat dia doang.",
+      date: "2026-10-28",
+      from: "listening"
+    },
+    {
+      id: "rumah",
+      label: "Jadi rumah buat dia",
+      text: "Kayaknya sih dia sering jadi 'rumah' buat temen-temennya. Terus gua kepikiran buat jadi 'rumah' buat dia, yang dia bebas mau ngapain aja dan senyaman dia, karena 'rumah' yang gua bangun emang buat jadi tempat aman buat dia. I really wish.",
+      date: "2026-10-28",
+      from: "listener"
+    },
+    {
+      id: "dari-hati",
+      label: "Dari hati yang paling dalam",
+      text: "Karena sore ini tiba-tiba kepikiran dia. Sebenernya sering sih, dan itu mix feeling aja: kadang inget yang seneng-seneng, kadang khawatir tiba-tiba padahal dia lagi gak kenapa-napa. Baru kali ini juga gua sampe ngerasa khawatir ke orang lain dan gak mau orang lain kenapa-napa. Jadi kalau lu baca bagian ini, dari hati gua yang paling dalam, hahah asik: gua minta maaf ya kalau gua keliatannya masih kaku atau terlalu dingin sikapnya, tapi semoga lu bisa ngerasain kalau gua bener-bener serius menyangkut apa pun tentang lu.",
+      date: "2026-10-28",
+      from: "first-prayer"
     }
   ]
 };
