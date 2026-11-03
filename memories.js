@@ -1641,6 +1641,43 @@ window.MEMORIES = {
       text: "Karena sore ini tiba-tiba kepikiran dia. Sebenernya sering sih, dan itu mix feeling aja: kadang inget yang seneng-seneng, kadang khawatir tiba-tiba padahal dia lagi gak kenapa-napa. Baru kali ini juga gua sampe ngerasa khawatir ke orang lain dan gak mau orang lain kenapa-napa. Jadi kalau lu baca bagian ini, dari hati gua yang paling dalam, hahah asik: gua minta maaf ya kalau gua keliatannya masih kaku atau terlalu dingin sikapnya, tapi semoga lu bisa ngerasain kalau gua bener-bener serius menyangkut apa pun tentang lu.",
       date: "2026-10-28",
       from: "first-prayer"
+    },
+    {
+      id: "paper-lamp",
+      label: "Kena lem tembak",
+      text: "Dia kena accident lagi, wkwk. Waktu kita berdua coba-coba bikin paper lamp, dia gak sengaja kena lelehan dari lem tembak, dan itu bikin dia kaget, takut, terus panik juga karena tau pasti panas dan perih. Terus dia juga jadi mual karena itu. Kasian banget kesayangan ku satu ini, HAHAHA.",
+      date: "2026-10-29",
+      from: "jatuh-olahraga",
+      links: ["kecelakaan-kecil"]
+    },
+    {
+      id: "fear-guilt",
+      label: "The same fear and guilt",
+      text: "And that incident brought back the same feelings of fear and guilt I had in the past. I'm also puzzled: why was I so incredibly afraid?",
+      date: "2026-10-29",
+      from: "paper-lamp"
+    },
+    {
+      id: "used-to-be-indifferent",
+      label: "Why I was so afraid",
+      text: "Because in the past I was very indifferent to people and didn't need anyone else, and now I can care and worry about other people, and that is, more precisely, her. And I'm very grateful to her.",
+      date: "2026-10-29",
+      from: "fear-guilt",
+      links: ["changed-me"]
+    },
+    {
+      id: "better-people",
+      label: "People much better than us",
+      text: "In the future, hopefully she will always meet people who are much better than the people who care about her now. And can continue to fight and make her happy too!",
+      date: "2026-10-29",
+      from: "hope-people"
+    },
+    {
+      id: "salting",
+      label: "Masih aja salting",
+      text: "Gua juga masih aja salting kalau dia ngeluarin kelemahan-kelemahan gua. Padahal gua juga sering dapetin itu dari orang lain, tapi kalau dari dia gua jadi salting banget dan gak bisa nonchalant lagi, haha.",
+      date: "2026-10-29",
+      from: "flirting"
     }
   ]
 };
