@@ -1678,6 +1678,34 @@ window.MEMORIES = {
       text: "Gua juga masih aja salting kalau dia ngeluarin kelemahan-kelemahan gua. Padahal gua juga sering dapetin itu dari orang lain, tapi kalau dari dia gua jadi salting banget dan gak bisa nonchalant lagi, haha.",
       date: "2026-10-29",
       from: "flirting"
+    },
+    {
+      id: "gak-durian",
+      label: "Gak suka durian",
+      text: "Dia gak suka durian.",
+      date: "2026-11-06",
+      from: "mushy"
+    },
+    {
+      id: "gak-kayu-putih",
+      label: "Gak suka minyak kayu putih",
+      text: "Dia juga gak suka sama minyak kayu putih dan baunya.",
+      date: "2026-11-06",
+      from: "gak-durian"
+    },
+    {
+      id: "cantik-tiap-hari",
+      label: "Cantik setiap hari",
+      text: "Dia cantik banget hari ini. Setiap hari sih, cuma kadang cantik banget, kadang cantik, kadang masyaAllah cantiknya.",
+      date: "2026-11-06",
+      from: "cantik-banget"
+    },
+    {
+      id: "sarkas-jutek",
+      label: "Sarkas dan jutek",
+      text: "Dia kalau ngomong sarkas, udah gitu jutek banget lagi, makanya kadang orang pada takut, hahaha.",
+      date: "2026-11-06",
+      from: "ngomong-kayak-marah"
     }
   ]
 };
