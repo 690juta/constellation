@@ -1706,6 +1706,69 @@ window.MEMORIES = {
       text: "Dia kalau ngomong sarkas, udah gitu jutek banget lagi, makanya kadang orang pada takut, hahaha.",
       date: "2026-11-06",
       from: "ngomong-kayak-marah"
+    },
+    {
+      id: "mood-turun",
+      label: "Moodnya turun",
+      text: "Waktu dia moodnya turun pas gua pulang cepet-cepet dari rumahnya, itu lucu banget, hahaha.",
+      date: "2026-11-09",
+      from: "manja"
+    },
+    {
+      id: "taichan",
+      label: "Taichan setelah ngopi",
+      text: "Waktu kita makan taichan bareng setelah pulang ngopi, haha. Selalu suka kalau liat dia makan makanan yang dia mau.",
+      date: "2026-11-09",
+      from: "ribs"
+    },
+    {
+      id: "jadwal-gak-cocok",
+      label: "Jadwal kita gak cocok",
+      text: "Sebenernya, gua juga bete karena bulan November ini jadwal kita banyak yang gak cocok.",
+      date: "2026-11-09",
+      from: "bete-libur"
+    },
+    {
+      id: "lucu-kalau-makan",
+      label: "Lucu kalau lagi makan",
+      text: "Dia lucu banget kalau lagi makan, terutama makanan yang menurut dia bener-bener enak!! hahaha.",
+      date: "2026-11-09",
+      from: "taichan"
+    },
+    {
+      id: "tangan-lembut",
+      label: "Tangannya lembut",
+      text: "Tangannya dia lembut banget.",
+      date: "2026-11-09",
+      from: "fingers"
+    },
+    {
+      id: "tanpa-makeup",
+      label: "Cantik tanpa make up",
+      text: "Dia super duper cantik tanpa make up!!!!",
+      date: "2026-11-09",
+      from: "cantik-tiap-hari"
+    },
+    {
+      id: "wangi-sekali",
+      label: "Wangi sekali",
+      text: "Dia juga wangi sekali!",
+      date: "2026-11-09",
+      from: "scent"
+    },
+    {
+      id: "ube-choco",
+      label: "Ube choco pastry Roti O",
+      text: "Dia lagi suka ube choco pastry-nya Roti O.",
+      date: "2026-11-09",
+      from: "pony"
+    },
+    {
+      id: "doa-untuknya",
+      label: "Semoga sehat selalu",
+      text: "Seneng karena dia sekarang minum vitamin, dan itu lumayan ngaruh, magnesiumnya, hahaha. Semoga sehat selalu dan hidup lebih lama, cantik ku. Terima kasih sudah bawa banyak kebahagiaan dan kebaikan buat gua dan orang lainnya juga. Semoga selalu bisa makan makanan yang lu suka, bisa pergi ke tempat yang mau dituju, dan semoga bisa terus menikmati hidup sedikit demi sedikit ya, cantik ku.",
+      date: "2026-11-09",
+      from: "hope"
     }
   ]
 };
