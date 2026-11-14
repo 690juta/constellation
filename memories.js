@@ -1811,6 +1811,76 @@ window.MEMORIES = {
       text: "Dia pakai poni, dan itu LUAR BIASAAA cantiknya!!!",
       date: "2026-11-10",
       from: "long-hair"
+    },
+    {
+      id: "sarapan-tiap-pagi",
+      label: "Harus sarapan tiap pagi",
+      text: "Sekarang, setiap pagi dia harus sarapan, apa pun itu. Jujur kali ini lupa karena apa... maaf ya, tapi harus sarapan, walaupun cuma susu atau apa gitu.",
+      date: "2026-11-10",
+      from: "curug"
+    },
+    {
+      id: "interaksi-kantor",
+      label: "Interaksi di kantor",
+      text: "Suka liat dia banyak interaksi di kantor sama yang lain, hahaha.",
+      date: "2026-11-10",
+      from: "explaining"
+    },
+    {
+      id: "mie-mulu",
+      label: "Makan mie mulu",
+      text: "Dia suka bilang 'makan mie mulu, makan mie mulu', padahal dia juga begitu.",
+      date: "2026-11-10",
+      from: "food"
+    },
+    {
+      id: "jangan-senggol-libur",
+      label: "Jangan senggol soal libur",
+      text: "Jangan berani-berani senggol soal hari libur kerja, HAHAHA, karena dia jadi langsung males.",
+      date: "2026-11-10",
+      from: "jadwal-gak-cocok"
+    },
+    {
+      id: "definisi-cantik",
+      label: "Definisi cantik",
+      text: "Dia definisi CANTIK yang bener-bener CANTIK. Semoga gak bosen kalau gua bilang ini terus, hehehe.",
+      date: "2026-11-10",
+      from: "cantik-tiap-hari"
+    },
+    {
+      id: "fair-ke-temen",
+      label: "Selalu berusaha fair",
+      text: "Dia juga selalu berusaha fair ke temen-temennya, dalam hal respon dan tindakan.",
+      date: "2026-11-10",
+      from: "bikin-nyaman"
+    },
+    {
+      id: "suka-dia-bersandar",
+      label: "Suka kalau dia needy",
+      text: "Sebenernya gua suka kalau dia lean on me atau needy, karena dia tuh sok kuat aja di depan orang-orang dan selalu ngalah mulu.",
+      date: "2026-11-10",
+      from: "relies-on-me"
+    },
+    {
+      id: "salah-timing",
+      label: "Salah timing ngajak pergi",
+      text: "Sebel dikit kalau dia bilang 'salah timing ngajak pergi', tau sih karena gak enak, lagi dan lagi. Tapi ya gua hargai dia punya perasaan kayak gitu, dan makasih sebelumnya, hehehe. CUMA gua tuh gak keberatan sama sekali, malah seneng, hahaha.",
+      date: "2026-11-10",
+      from: "suka-dia-bersandar"
+    },
+    {
+      id: "panggilan-manis",
+      label: "Panggilan yang manis",
+      text: "Sampai sekarang gua tuh masih salting banget kalau dia manggil sebutan yang manis-manis kayak 'sayang' atau 'cinta'.",
+      date: "2026-11-10",
+      from: "salting"
+    },
+    {
+      id: "sama-binatang",
+      label: "Sama binatang",
+      text: "Suka juga liat dia interaksi sama binatang apa pun itu, kayak 'how lovely she is', hehe.",
+      date: "2026-11-10",
+      from: "animals"
     }
   ]
 };
