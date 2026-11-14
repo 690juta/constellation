@@ -1769,6 +1769,48 @@ window.MEMORIES = {
       text: "Seneng karena dia sekarang minum vitamin, dan itu lumayan ngaruh, magnesiumnya, hahaha. Semoga sehat selalu dan hidup lebih lama, cantik ku. Terima kasih sudah bawa banyak kebahagiaan dan kebaikan buat gua dan orang lainnya juga. Semoga selalu bisa makan makanan yang lu suka, bisa pergi ke tempat yang mau dituju, dan semoga bisa terus menikmati hidup sedikit demi sedikit ya, cantik ku.",
       date: "2026-11-09",
       from: "hope"
+    },
+    {
+      id: "curug",
+      label: "Sampai ke air terjun",
+      text: "Waktu kita ke curug bareng sama temen lainnya, dia berhasil sampe ke air terjun, hahaha, karena sebelumnya sarapan. Kuncinya di sarapan ternyata. Dan apa pun itu, so proud of u, cantik ku.",
+      date: "2026-11-10",
+      from: "going-out"
+    },
+    {
+      id: "bau-truk-ayam",
+      label: "Gak suka bau truk ayam",
+      text: "Dia gak suka bau truk ayam dan bangkai tikus yang masih basah, katanya, haha.",
+      date: "2026-11-10",
+      from: "gak-kayu-putih"
+    },
+    {
+      id: "sarkas-kata-kata",
+      label: "Sarkas sampai kata-katanya",
+      text: "Dia kalau ngomong nadanya sarkas, tapi kata-katanya juga, HAHAHA.",
+      date: "2026-11-10",
+      from: "sarkas-jutek"
+    },
+    {
+      id: "well-prepared",
+      label: "Well-prepared",
+      text: "Dia well-prepared juga orangnya.",
+      date: "2026-11-10",
+      from: "meticulous"
+    },
+    {
+      id: "saatnya-gak-kalah",
+      label: "Saatnya gak boleh kalah",
+      text: "Dan gua percaya dia emang banyak ngalahnya, makanya gua suka banget pas dia bilang dia mau a, b, c. Berasa kayak 'ini saatnya lu gak boleh kalah', hahaha.",
+      date: "2026-11-10",
+      from: "bangga"
+    },
+    {
+      id: "poni",
+      label: "Pakai poni",
+      text: "Dia pakai poni, dan itu LUAR BIASAAA cantiknya!!!",
+      date: "2026-11-10",
+      from: "long-hair"
     }
   ]
 };
