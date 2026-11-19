@@ -662,7 +662,8 @@
       if (a <= 0.01) return;
       var on = it === selected, hot = it === hovered;
       var folded = collapseMode && it.root === it && it.members ? 1 - it.e : 0;
-      var beacon = it.isNewest ? 1 : 0;
+      var beacon = it.isNewest ? 1 : (collapseMode && it.root === it && it.famNewest && folded > 0.02 ? folded : 0);
+      var fam = it.root.famNewest && !it.isNewest && beacon <= 0.02 ? 1 : 0;
       var dk = (on || hot) ? 1 : 0.5 + 0.5 * it.lit;   // older stars rest at about half their light
       var r = 2.4 + Math.min(it.kids, 4) * 0.55;
       var tw = reduce ? 1 : 1 + 0.12 * Math.sin(t / 900 + it.phase);
@@ -684,6 +685,15 @@
         rh.addColorStop(1, "rgba(255,244,214,0)");
         fctx.fillStyle = rh;
         fctx.beginPath(); fctx.arc(it.sx, it.sy, rg, 0, 6.2832); fctx.fill();
+      }
+      // the rest of a family that has a brand-new star in it glows warmer too
+      if (fam) {
+        var fr = r * 10;
+        var fh = fctx.createRadialGradient(it.sx, it.sy, 0, it.sx, it.sy, fr);
+        fh.addColorStop(0, "rgba(255,236,180," + (0.34 * a).toFixed(3) + ")");
+        fh.addColorStop(1, "rgba(255,236,180,0)");
+        fctx.fillStyle = fh;
+        fctx.beginPath(); fctx.arc(it.sx, it.sy, fr, 0, 6.2832); fctx.fill();
       }
       // the newest stars: a slow-breathing golden halo with a soft cross of light
       if (beacon > 0.02) {
@@ -753,18 +763,6 @@
           sg.addColorStop(1, "rgba(255,250,235,0)");
           fctx.strokeStyle = sg; fctx.lineWidth = 1.2;
           fctx.beginPath(); fctx.moveTo(x0, it.sy); fctx.lineTo(x1, it.sy); fctx.stroke();
-        }
-        // a small golden spark on the ring: a new star is hiding inside this group
-        if (it.famNewest && !it.isNewest) {
-          var sa = -0.785, spx = it.sx + Math.cos(sa) * ringR, spy = it.sy + Math.sin(sa) * ringR;
-          var pulse = reduce ? 1 : 0.75 + 0.25 * Math.sin(t / 650 + it.phase);
-          var spg = fctx.createRadialGradient(spx, spy, 0, spx, spy, 9);
-          spg.addColorStop(0, "rgba(255,226,150," + (0.9 * fa * pulse).toFixed(3) + ")");
-          spg.addColorStop(1, "rgba(255,226,150,0)");
-          fctx.fillStyle = spg;
-          fctx.beginPath(); fctx.arc(spx, spy, 9, 0, 6.2832); fctx.fill();
-          fctx.fillStyle = "rgba(255,246,214," + (0.95 * folded * a).toFixed(3) + ")";
-          fctx.beginPath(); fctx.arc(spx, spy, 2.2, 0, 6.2832); fctx.fill();
         }
         fctx.lineCap = "butt"; fctx.lineWidth = 1;
         fctx.fillStyle = "rgba(245,238,220," + (0.85 * folded * a).toFixed(3) + ")";
