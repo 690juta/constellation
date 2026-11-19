@@ -1774,113 +1774,162 @@ window.MEMORIES = {
       id: "curug",
       label: "Sampai ke air terjun",
       text: "Waktu kita ke curug bareng sama temen lainnya, dia berhasil sampe ke air terjun, hahaha, karena sebelumnya sarapan. Kuncinya di sarapan ternyata. Dan apa pun itu, so proud of u, cantik ku.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "going-out"
     },
     {
       id: "bau-truk-ayam",
       label: "Gak suka bau truk ayam",
       text: "Dia gak suka bau truk ayam dan bangkai tikus yang masih basah, katanya, haha.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "gak-kayu-putih"
     },
     {
       id: "sarkas-kata-kata",
       label: "Sarkas sampai kata-katanya",
       text: "Dia kalau ngomong nadanya sarkas, tapi kata-katanya juga, HAHAHA.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "sarkas-jutek"
     },
     {
       id: "well-prepared",
       label: "Well-prepared",
       text: "Dia well-prepared juga orangnya.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "meticulous"
     },
     {
       id: "saatnya-gak-kalah",
       label: "Saatnya gak boleh kalah",
       text: "Dan gua percaya dia emang banyak ngalahnya, makanya gua suka banget pas dia bilang dia mau a, b, c. Berasa kayak 'ini saatnya lu gak boleh kalah', hahaha.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "bangga"
     },
     {
       id: "poni",
       label: "Pakai poni",
       text: "Dia pakai poni, dan itu LUAR BIASAAA cantiknya!!!",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "long-hair"
     },
     {
       id: "sarapan-tiap-pagi",
       label: "Harus sarapan tiap pagi",
       text: "Sekarang, setiap pagi dia harus sarapan, apa pun itu. Jujur kali ini lupa karena apa... maaf ya, tapi harus sarapan, walaupun cuma susu atau apa gitu.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "curug"
     },
     {
       id: "interaksi-kantor",
       label: "Interaksi di kantor",
       text: "Suka liat dia banyak interaksi di kantor sama yang lain, hahaha.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "explaining"
     },
     {
       id: "mie-mulu",
       label: "Makan mie mulu",
       text: "Dia suka bilang 'makan mie mulu, makan mie mulu', padahal dia juga begitu.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "food"
     },
     {
       id: "jangan-senggol-libur",
       label: "Jangan senggol soal libur",
       text: "Jangan berani-berani senggol soal hari libur kerja, HAHAHA, karena dia jadi langsung males.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "jadwal-gak-cocok"
     },
     {
       id: "definisi-cantik",
       label: "Definisi cantik",
       text: "Dia definisi CANTIK yang bener-bener CANTIK. Semoga gak bosen kalau gua bilang ini terus, hehehe.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "cantik-tiap-hari"
     },
     {
       id: "fair-ke-temen",
       label: "Selalu berusaha fair",
       text: "Dia juga selalu berusaha fair ke temen-temennya, dalam hal respon dan tindakan.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "bikin-nyaman"
     },
     {
       id: "suka-dia-bersandar",
       label: "Suka kalau dia needy",
       text: "Sebenernya gua suka kalau dia lean on me atau needy, karena dia tuh sok kuat aja di depan orang-orang dan selalu ngalah mulu.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "relies-on-me"
     },
     {
       id: "salah-timing",
       label: "Salah timing ngajak pergi",
       text: "Sebel dikit kalau dia bilang 'salah timing ngajak pergi', tau sih karena gak enak, lagi dan lagi. Tapi ya gua hargai dia punya perasaan kayak gitu, dan makasih sebelumnya, hehehe. CUMA gua tuh gak keberatan sama sekali, malah seneng, hahaha.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "suka-dia-bersandar"
     },
     {
       id: "panggilan-manis",
       label: "Panggilan yang manis",
       text: "Sampai sekarang gua tuh masih salting banget kalau dia manggil sebutan yang manis-manis kayak 'sayang' atau 'cinta'.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "salting"
     },
     {
       id: "sama-binatang",
       label: "Sama binatang",
       text: "Suka juga liat dia interaksi sama binatang apa pun itu, kayak 'how lovely she is', hehe.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "animals"
+    },
+    {
+      id: "suka-dingin",
+      label: "Suka dingin, gak suka panas",
+      text: "Dia suka dingin dan gak suka banget panas, karena gampang gerah dan gampang ngeluh kepanasan, ckck.",
+      date: "2026-11-19",
+      from: "unhurried"
+    },
+    {
+      id: "bingung-sekunder",
+      label: "Bingung hal sekunder",
+      text: "Perempuan bingung, hahahaha. Gak deng, bingung nentuin hal-hal sekunder aja.",
+      date: "2026-11-19",
+      from: "indecisive"
+    },
+    {
+      id: "hijab-nempel",
+      label: "Hijab yang nempel",
+      text: "Gua suka kalau lihat dia pake hijab yang nempel banget gitu, gatau namanya apa, hehe. Karena makin tambah cantiknya.",
+      date: "2026-11-19",
+      from: "hijab"
+    },
+    {
+      id: "cemberut",
+      label: "Cemberut kalau moodnya turun",
+      text: "Lucu kalau tiba-tiba moodnya dia turun, karena jadi kayak cemberut gitu, haha. Asal jangan lama-lama, atau beneran turun aja moodnya.",
+      date: "2026-11-19",
+      from: "mood-turun"
+    },
+    {
+      id: "barefaced",
+      label: "Barefacenya",
+      text: "Gua juga suka banget liat barefacenya, karena cantik banget banget.",
+      date: "2026-11-19",
+      from: "tanpa-makeup"
+    },
+    {
+      id: "favorit-semua-orang",
+      label: "Everyone's favorite",
+      text: "Karena dia everyone's favorite, jadi gitu deh, kadang emang suka ngewar buat pergi.",
+      date: "2026-11-19",
+      from: "bikin-nyaman"
+    },
+    {
+      id: "cantik-semua-kondisi",
+      label: "Cantik di setiap kondisi",
+      text: "Dia cantik banget di setiap kondisi. Apa pun itu.",
+      date: "2026-11-19",
+      from: "definisi-cantik"
     }
   ]
 };
