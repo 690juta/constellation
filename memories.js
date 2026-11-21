@@ -1816,70 +1816,70 @@ window.MEMORIES = {
       id: "sarapan-tiap-pagi",
       label: "Harus sarapan tiap pagi",
       text: "Sekarang, setiap pagi dia harus sarapan, apa pun itu. Jujur kali ini lupa karena apa... maaf ya, tapi harus sarapan, walaupun cuma susu atau apa gitu.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "curug"
     },
     {
       id: "interaksi-kantor",
       label: "Interaksi di kantor",
       text: "Suka liat dia banyak interaksi di kantor sama yang lain, hahaha.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "explaining"
     },
     {
       id: "mie-mulu",
       label: "Makan mie mulu",
       text: "Dia suka bilang 'makan mie mulu, makan mie mulu', padahal dia juga begitu.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "food"
     },
     {
       id: "jangan-senggol-libur",
       label: "Jangan senggol soal libur",
       text: "Jangan berani-berani senggol soal hari libur kerja, HAHAHA, karena dia jadi langsung males.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "jadwal-gak-cocok"
     },
     {
       id: "definisi-cantik",
       label: "Definisi cantik",
       text: "Dia definisi CANTIK yang bener-bener CANTIK. Semoga gak bosen kalau gua bilang ini terus, hehehe.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "cantik-tiap-hari"
     },
     {
       id: "fair-ke-temen",
       label: "Selalu berusaha fair",
       text: "Dia juga selalu berusaha fair ke temen-temennya, dalam hal respon dan tindakan.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "bikin-nyaman"
     },
     {
       id: "suka-dia-bersandar",
       label: "Suka kalau dia needy",
       text: "Sebenernya gua suka kalau dia lean on me atau needy, karena dia tuh sok kuat aja di depan orang-orang dan selalu ngalah mulu.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "relies-on-me"
     },
     {
       id: "salah-timing",
       label: "Salah timing ngajak pergi",
       text: "Sebel dikit kalau dia bilang 'salah timing ngajak pergi', tau sih karena gak enak, lagi dan lagi. Tapi ya gua hargai dia punya perasaan kayak gitu, dan makasih sebelumnya, hehehe. CUMA gua tuh gak keberatan sama sekali, malah seneng, hahaha.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "suka-dia-bersandar"
     },
     {
       id: "panggilan-manis",
       label: "Panggilan yang manis",
       text: "Sampai sekarang gua tuh masih salting banget kalau dia manggil sebutan yang manis-manis kayak 'sayang' atau 'cinta'.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "salting"
     },
     {
       id: "sama-binatang",
       label: "Sama binatang",
       text: "Suka juga liat dia interaksi sama binatang apa pun itu, kayak 'how lovely she is', hehe.",
-      date: "2026-11-15",
+      date: "2026-11-19",
       from: "animals"
     },
     {
@@ -1930,6 +1930,55 @@ window.MEMORIES = {
       text: "Dia cantik banget di setiap kondisi. Apa pun itu.",
       date: "2026-11-19",
       from: "definisi-cantik"
+    },
+    {
+      id: "lebih-aware",
+      label: "Dia sekarang lebih aware",
+      text: "Katanya sekarang dia lebih aware karena gua selalu bilang dia 'ngalah' terus di pertemanan. Dan memang iya. Selamat, cantik ku, sudah lebih aware sekarang, hehe. Jangan ngalah terus ya, apalagi cuma di hubungan pertemanan. Selagi cantik ku gak ada niat apa-apa, gapapa sedikit lebih egois, hehe.",
+      date: "2026-11-21",
+      from: "saatnya-gak-kalah"
+    },
+    {
+      id: "taichan-hampir-tiap-hari",
+      label: "Taichan hampir tiap hari",
+      text: "Dia suka banget sama taichan, karena menurut dia itu makanan yang ringan, jadi dia bisa-bisa aja makan itu hampir setiap hari.",
+      date: "2026-11-21",
+      from: "taichan"
+    },
+    {
+      id: "terlalu-banyak-jajan",
+      label: "Merasa udah terlalu banyak jajan",
+      text: "Suka lucu kadang kalau dia ditawarin buat beli apa yang sekiranya dia suka, tapi dia bingung karena merasa udah terlalu banyak jajan.",
+      date: "2026-11-21",
+      from: "bingung-sekunder"
+    },
+    {
+      id: "voice-of-conscience",
+      label: "Voice of Conscience",
+      text: "Dia tuh orangnya bener-bener Voice of Conscience, hahaha.",
+      date: "2026-11-21",
+      from: "speaks-up"
+    },
+    {
+      id: "tegas-dari-awal",
+      label: "Harus tegas dari awal",
+      text: "Karena dia bener-bener indecisive, jadi harus tegas aja dari awal maunya apa.",
+      date: "2026-11-21",
+      from: "indecisive"
+    },
+    {
+      id: "lebih-gak-enakan",
+      label: "Lebih gak enakan dari gua",
+      text: "Ternyata dia orangnya lebih gak enakan daripada gua, ckck.",
+      date: "2026-11-21",
+      from: "salah-timing"
+    },
+    {
+      id: "boleh-diandelin",
+      label: "Boleh lu andelin",
+      text: "Kalau baca bagian ini, cuma mau bilang kalau gua gak keberatan sama sekali buat sesekali lu andelin. Justru semoga gua bisa selalu lu andelin kapan pun lu butuh.",
+      date: "2026-11-21",
+      from: "suka-dia-bersandar"
     }
   ]
 };
