@@ -1979,6 +1979,48 @@ window.MEMORIES = {
       text: "Kalau baca bagian ini, cuma mau bilang kalau gua gak keberatan sama sekali buat sesekali lu andelin. Justru semoga gua bisa selalu lu andelin kapan pun lu butuh.",
       date: "2026-11-21",
       from: "suka-dia-bersandar"
+    },
+    {
+      id: "gemesan",
+      label: "Dia gemesan",
+      text: "Dia gemesan orangnya.",
+      date: "2026-11-26",
+      from: "angry-cute"
+    },
+    {
+      id: "suka-banget-ube",
+      label: "Suka banget ube choco",
+      text: "Dia suka banget ube choco Roti O.",
+      date: "2026-11-26",
+      from: "ube-choco"
+    },
+    {
+      id: "cantik-tidur",
+      label: "Cantik waktu tidur",
+      text: "Cantik juga kalau lagi tidur atau bangun tidur.",
+      date: "2026-11-26",
+      from: "cantik-semua-kondisi"
+    },
+    {
+      id: "gampang-tidur",
+      label: "Gampang banget tidur",
+      text: "Cantik ku gampang banget tidurnya, sekali merem langsung pules, kayaknya.",
+      date: "2026-11-26",
+      from: "dark-sleep"
+    },
+    {
+      id: "cemberut-cantik",
+      label: "Cantik kalau cemberut",
+      text: "Kalau lagi cemberut juga cantik banget.",
+      date: "2026-11-26",
+      from: "cemberut"
+    },
+    {
+      id: "jelek-kalau-gak-kangen",
+      label: "Jelek kalau gak kangen",
+      text: "Dia jelek kalau lagi gak kangen sama gua aja sih, kayaknya.",
+      date: "2026-11-26",
+      from: "miss-her"
     }
   ]
 };
